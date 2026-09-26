@@ -1,6 +1,6 @@
 """Correct TCR-pMHC crossing / incident angle, recomputed from the structure.
 
-The ImmunoScope `angle` stage mis-resolves the groove / TCR axes and reports clear
+The md_analysis `angle` stage mis-resolves the groove / TCR axes and reports clear
 diagonal dockings as near-parallel (e.g. the four A6/HLA-A2 complexes came out
 2.7-8.5 deg instead of the canonical 22-69 deg range, and inconsistently). This recomputes both angles
 per frame with chains identified by ROLE (not by chain id, which is not consistent
@@ -34,7 +34,7 @@ SERIES_POINTS = 150                # downsampled time series for the detail plot
 
 # Antigen chain for structures whose upstream peptide detector left peptide_chain
 # null (non-standard antigens, e.g. lipopeptides), so the angle is computed here
-# instead of skipped and left with the stale ImmunoScope value.
+# instead of skipped and left with the stale md_analysis value.
 _MANUAL_PEPTIDE_CHAIN = {"7byd": "C"}   # GLY-GLY-ALA-ILE lipopeptide on Mamu-B*05104
 
 

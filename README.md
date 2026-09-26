@@ -4,22 +4,25 @@ Archived analysis-pipeline code for ITrace version 1.0, accompanying the
 Scientific Data Data Descriptor submission for the ITrace pMHC–TCR molecular
 dynamics trajectory resource. This repository covers the scientific analysis
 pipeline only. The website and API implementation are maintained separately at
-[github.com/myxu95/ImmunoTrace-web](https://github.com/myxu95/ImmunoTrace-web)
+[github.com/myxu95/ITrace-web](https://github.com/myxu95/ITrace-web)
 (MIT License).
-
-**Before pushing this repository, read `NOTES.md` — it lists provenance
-caveats that need a decision.**
 
 ## Structure
 
-- **`immunoscope/`** — the core per-system MD analysis toolkit: structure
-  preparation, trajectory standardization, and descriptor calculation
-  (interface metrics, docking/incident angles, dihedral PCA, RMSF, essential
-  dynamics, etc.). Version 0.1.0. This is the toolkit recorded in each
-  complex's `analysis.json` under `provenance` as `ImmunoScope 0.1.0`.
+- **`protocol/`** — the GROMACS structure-preparation and equilibration
+  protocol (`reproduce.sh` + `em.mdp`/`nvt.mdp`/`npt.mdp`/`md.mdp`): topology
+  generation, solvation/ionization, energy minimization, NVT/NPT equilibration,
+  production MD, and the trajectory-standardization post-processing
+  (`gmx trjconv -pbc whole` → `-pbc nojump` → `-fit rot+trans`, protein-only
+  extraction, topology-PDB dump).
+
+- **`md_analysis/`** — the core per-system MD analysis toolkit: descriptor
+  calculation (interface metrics, docking/incident angles, dihedral PCA, RMSF,
+  essential dynamics, etc.). Version 0.1.0. This is the toolkit recorded in
+  each complex's `analysis.json` under `provenance` as `md_analysis 0.1.0`.
 
 - **`pipeline/`** — extraction, quality-control reporting, manifest building,
-  and aggregation of ImmunoScope's per-system outputs into the web-facing
+  and aggregation of `md_analysis`'s per-system outputs into the web-facing
   `analysis.json` records and `web_data/` bundle. Includes structural
   annotation (chain roles, TCR/antigen identity, CDR contacts), QC gating,
   and the post-hoc correction scripts applied during preparation of this
@@ -37,24 +40,28 @@ Two conda environments are used:
 
 - `environment.yml` (env `immuno-web`) — for `pipeline/` (extract / enrich /
   metrics / manifest / thumbnails / aggregate).
-- `environment-imscope.yml` (env `imscope`) — for the heavy per-system MD
-  analysis (`immunoscope/`, driven via `pipeline/run_analysis.py`) and the
+- `environment-md-analysis.yml` (env `md-analysis`) — for the heavy per-system
+  MD analysis (`md_analysis/`, driven via `pipeline/run_analysis.py`) and the
   publication figures (`figs/`).
 
-`immunoscope` itself is not published to PyPI/conda; install it editable
-inside the `imscope` environment:
+`md_analysis` itself is not published to PyPI/conda; install it editable
+inside the `md-analysis` environment:
 
 ```bash
-conda env create -f environment-imscope.yml
-conda activate imscope
-pip install -e ./immunoscope
+conda env create -f environment-md-analysis.yml
+conda activate md-analysis
+pip install -e ./md_analysis
 ```
 
 ## Provenance
 
-The per-complex `analysis.json` records provenance as `ImmunoScope 0.1.0,
-commit cbb0ae2b`. See `NOTES.md` for an open caveat on verifying that this
-archived copy of `immunoscope/` matches that exact commit.
+The per-complex `analysis.json` records provenance as `md_analysis 0.1.0`.
+`md_analysis/` in this repository is the analysis code used to compute the
+published per-system descriptors; no independently verifiable commit hash is
+recorded for the exact state of that code, since its original version-control
+history was not preserved separately from the working copy archived here.
+`pipeline/` and `figs/` are tracked in the authors' own `Immuno-Dyn` git
+history, unaffected by this caveat.
 
 ## License
 

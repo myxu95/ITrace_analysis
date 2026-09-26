@@ -18,7 +18,7 @@ from . import consensus
 
 _PRECISE_HLA = re.compile(r"^HLA-[A-Z]+\*\d+:\d+")
 
-# Structures where RCSB is only locus-coarse AND ImmunoScope's typer mis-scored the
+# Structures where RCSB is only locus-coarse AND md_analysis's typer mis-scored the
 # MHC chain (it matched short truncated `N` null alleles at ~55-67% identity). The
 # correct 2-field allele was resolved by directly aligning the MHC heavy chain to the
 # IMGT/HLA protein database (identity in comment), and cross-checks against the bound
@@ -103,7 +103,7 @@ def _two_field(allele: str):
 
 
 def _struct_hla(traj_id: str):
-    """Sequence-typed HLA allele from the MHC heavy chain (ImmunoScope's IMGT/HLA
+    """Sequence-typed HLA allele from the MHC heavy chain (md_analysis's IMGT/HLA
     match), resolved to the 2-field (protein) level — the deeper fields are
     synonymous/intronic and not determinable from the structure.
 

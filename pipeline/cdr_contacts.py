@@ -2,7 +2,7 @@
 
 Why this exists
 ---------------
-The upstream immunoscope contact stage annotates each TCR contact residue as
+The upstream md_analysis contact stage annotates each TCR contact residue as
 CDR1/2/3 or framework using its own regex-based CDR detection. That regex keys
 on the first Cys...aromatic motif and mislocates the loops -- e.g. for 1ao7 it
 labels CDR1 residues as "CDR3" and dumps the genuine CDR3 (and CDR2) contacts

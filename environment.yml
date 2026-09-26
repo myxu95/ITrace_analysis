@@ -1,11 +1,12 @@
 # `immuno-web` env: the web pipeline (extract / enrich / metrics / manifest /
 # thumbnails / aggregate) + the FastAPI backend. The heavy per-system analysis is
-# produced separately by ImmunoScope (env `imscope`, see below) — it is external,
-# not pip-installable, and recorded in analysis.json `provenance`
-# (ImmunoScope 0.1.0, commit cbb0ae2b). TCR ANARCI annotation runs on the server's
-# `anarci` env. Publication figures (pipeline.figures) need matplotlib (in imscope).
-# pipeline.concerted_motion (DCCM + dynamic network) needs networkx + matplotlib
-# alongside mdtraj, so both are declared here too.
+# produced separately by md_analysis (env `md-analysis`, see below) — it is
+# archived in this repository under `md_analysis/` and recorded in each
+# complex's analysis.json `provenance` as `md_analysis 0.1.0`. TCR ANARCI
+# annotation runs on the server's `anarci` env. Publication figures
+# (pipeline.figures) need matplotlib (in md-analysis). pipeline.concerted_motion
+# (DCCM + dynamic network) needs networkx + matplotlib alongside mdtraj, so both
+# are declared here too.
 name: immuno-web
 channels:
   - conda-forge

@@ -1,4 +1,4 @@
-"""Correct RMSF region labels on trajectories whose ImmunoScope per-chain role
+"""Correct RMSF region labels on trajectories whose md_analysis per-chain role
 resolution disagrees with the authoritative meta.chain_roles (the 6 run3:
 1fo0/1nam/2ol3/4prh/5hhm/7rk7, where MHC↔TCRβ or TCRα↔TCRβ were swapped).
 

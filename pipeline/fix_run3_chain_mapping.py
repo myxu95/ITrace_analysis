@@ -1,5 +1,5 @@
 """One-off repair — force the canonical A–E chain partition for the three run3
-trajectories whose ORIGINAL ImmunoScope analysis mislabeled both TCR chains as
+trajectories whose ORIGINAL md_analysis analysis mislabeled both TCR chains as
 alpha (beta n=0), inflating the ``bsa`` scalar / ``contact`` / ``interactions``
 blocks and tripping the CDR ``single_chain_collapse`` reliability gate.
 
@@ -18,7 +18,7 @@ to ``ChainIdentificationNode._fallback_chain_assignment()``.
     ============================================================================
     *** THIS SCRIPT NEVER TOUCHES THE LIVE web_data_1000 TREE. ***
     ============================================================================
-    - ``recompute`` writes ImmunoScope stage output to a SEPARATE scratch root.
+    - ``recompute`` writes md_analysis stage output to a SEPARATE scratch root.
     - ``stage``     COPIES the three live analysis dirs into a scratch web_data
                     (read-only from live) so their preservation sidecars travel.
     - ``embed``     re-curates analysis.json INTO THE STAGING COPY ONLY, with a
@@ -161,7 +161,7 @@ def _install_forced_chain_identification() -> None:
     which is exactly what a per-stage, re-reading pipeline requires. Injecting
     into only the first stage would be useless.
     """
-    from immunoscope.pipeline.nodes.topology.chain_identification_node import (
+    from md_analysis.pipeline.nodes.topology.chain_identification_node import (
         ChainIdentificationNode,
     )
 
@@ -210,7 +210,7 @@ def _pdb_chain_ids(pdb: Path) -> set[str]:
 # Mode: recompute
 # --------------------------------------------------------------------------- #
 def mode_recompute(out_root: Path, stages: list[str], ids: list[str]) -> int:
-    """Run the forced ImmunoScope stages for the 3 targets into a scratch root.
+    """Run the forced md_analysis stages for the 3 targets into a scratch root.
 
     Runs SERIALLY, in THIS process (no ProcessPoolExecutor), so the class-level
     monkeypatch is guaranteed live for every stage. Only ~3 systems x ~10 stages.
@@ -559,7 +559,7 @@ def main(argv=None) -> int:
                     "(NEVER writes live web_data_1000).")
     sub = p.add_subparsers(dest="mode", required=True)
 
-    pr = sub.add_parser("recompute", help="forced ImmunoScope stages -> scratch root")
+    pr = sub.add_parser("recompute", help="forced md_analysis stages -> scratch root")
     pr.add_argument("--out", type=Path, default=DEFAULT_RECOMPUTE_OUT)
     pr.add_argument("--stages", default=DEFAULT_STAGES)
     pr.add_argument("--ids", default=",".join(TARGET_IDS))

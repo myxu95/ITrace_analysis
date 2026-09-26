@@ -2,7 +2,7 @@
 """Repair the run3 identity metadata in the served analysis.json files.
 
 Two defects, both introduced by the `parallel3_preprocess` run3 analysis batch, in
-which ANARCI was not available so ImmunoScope's IntelligentChainIdentifier fell back
+which ANARCI was not available so md_analysis's IntelligentChainIdentifier fell back
 to ordering the three non-peptide/non-b2m chains by length:
 
   A. chain roles: for the 6 complexes where the length order disagrees with ANARCI,

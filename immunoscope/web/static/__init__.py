@@ -1,3 +1,0 @@
-"""
-Static web assets.
-"""

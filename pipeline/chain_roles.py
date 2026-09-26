@@ -1,7 +1,7 @@
 """Authoritative chain -> biological-role mapping — the single source of truth.
 
 Every per-chain role decision on the site historically trusted whatever each
-analysis stage guessed, and those guesses disagree: ImmunoScope's per-chain
+analysis stage guessed, and those guesses disagree: md_analysis's per-chain
 `component` label is correct-but-non-canonical for ~63 complexes (the source PDB
 simply doesn't number chains A=MHC…E=TCRβ) and genuinely WRONG for 6 run3
 trajectories (e.g. 4prh_run3 calls the real MHC chain "TCRβ"), even though the

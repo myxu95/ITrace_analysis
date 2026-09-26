@@ -1,3 +1,0 @@
-"""
-Derived HLA data files.
-"""

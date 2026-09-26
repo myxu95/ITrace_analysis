@@ -1,3 +1,0 @@
-"""
-Local HLA reference library.
-"""

@@ -7,7 +7,7 @@ positions were "unimportant", when in fact they are buried HLA anchors.
 
 This module is **purely trajectory-derived** (``topology.pdb`` + ``traj.xtc``),
 like ``concerted_motion``: it globs ``WEB_DATA`` and takes no ``--source``. It
-deliberately does NOT rely on the ImmunoScope rmsf CSV for chain / groove
+deliberately does NOT rely on the md_analysis rmsf CSV for chain / groove
 identification — those ``component`` / ``mhc_subregion`` labels key on chain ids
 that are not consistent across the PDB and mis-resolved the MHC heavy chain for
 several complexes (e.g. 7rk7 / 5hhm / 4prh got an impossible 18-27 A bulge and
@@ -23,7 +23,7 @@ Calpha above the MHC groove plane), radius of gyration, and total SASA.
 Writes a sidecar ``analysis/struct_metrics.json`` AND patches ``analysis.json``
 directly (geometry block + peptide_table hla_contact / sasa_nm2 / anchor), so it
 does not depend on a later ``extract_analysis`` pass (which needs the now-absent
-ImmunoScope source root).
+md_analysis source root).
 
     IMMUNO_WEB_DATA=.../immuno-dyn python -m pipeline.struct_metrics [--ids a,b]
 """
@@ -133,7 +133,7 @@ def bsa_decomposition(sub, sasa_complex, pep_chain, mhc_chain, a_ch, b_ch) -> di
 def bsa_reconciliation(bsa_immuno, bsa_decomp) -> dict | None:
     """Cross-check the two independent buried-surface-area estimates.
 
-    ImmunoScope's ``bsa.buried_surface_area.mean`` is a one-sided ΔSASA; the
+    md_analysis's ``bsa.buried_surface_area.mean`` is a one-sided ΔSASA; the
     struct decomposition ``total`` sums BOTH partners of the same interface, so
     ``total/2`` is the comparable one-sided figure. A large gap flags an artifact
     in one of the two pipelines. Separately, ``pmhc_total ≈ tcr_total`` by

@@ -1,0 +1,49 @@
+; md.mdp — 200 ns production MD at 310 K / 1 bar (NPT)
+; ITrace reproduction protocol · GROMACS + CHARMM36 (Jul 2021) / TIP3P
+integrator      = md
+dt              = 0.002          ; 2 fs
+nsteps          = 100000000      ; 200 ns
+
+; output — compressed trajectory every 100 ps (2001 frames / 200 ns)
+nstxout-compressed = 50000
+compressed-x-grps  = System
+nstlog          = 50000
+nstenergy       = 50000
+nstcalcenergy   = 100
+
+; bonds / constraints
+continuation         = yes
+constraint_algorithm = lincs
+constraints          = h-bonds
+lincs_order          = 4
+
+; neighbour searching
+cutoff-scheme   = Verlet
+nstlist         = 40
+pbc             = xyz
+rlist           = 1.2
+
+; electrostatics + van der Waals (CHARMM36)
+coulombtype     = PME
+rcoulomb        = 1.2
+fourierspacing  = 0.16
+pme_order       = 4
+vdwtype         = cutoff
+vdw-modifier    = force-switch
+rvdw-switch     = 1.0
+rvdw            = 1.2
+
+; temperature coupling — solute / solvent separate
+tcoupl          = V-rescale
+tc-grps         = Protein  Non-Protein
+tau_t           = 0.2      0.2
+ref_t           = 310      310
+
+; pressure coupling
+pcoupl          = C-rescale
+pcoupltype      = isotropic
+tau_p           = 2.0
+ref_p           = 1.0
+compressibility = 4.5e-5         ; bar^-1
+
+gen_vel         = no             ; velocities carried over from NPT

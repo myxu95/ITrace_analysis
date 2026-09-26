@@ -1,0 +1,24 @@
+; em.mdp — steepest-descent energy minimisation
+; ITrace reproduction protocol · GROMACS + CHARMM36 (Jul 2021) / TIP3P
+integrator      = steep
+emtol           = 500.0         ; kJ mol^-1 nm^-1  (Fmax stop criterion)
+emstep          = 0.01
+nsteps          = 50000
+
+; neighbour searching
+cutoff-scheme   = Verlet
+nstlist         = 40
+ns_type         = grid
+pbc             = xyz
+rlist           = 1.2
+
+; electrostatics + van der Waals (CHARMM36 recommended settings)
+coulombtype     = PME
+rcoulomb        = 1.2
+fourierspacing  = 0.16
+pme_order       = 4
+vdwtype         = cutoff
+vdw-modifier    = force-switch
+rvdw-switch     = 1.0
+rvdw            = 1.2
+DispCorr        = no

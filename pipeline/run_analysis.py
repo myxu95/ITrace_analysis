@@ -1,4 +1,4 @@
-"""Run the full ImmunoScope analysis suite over the pHLA-TCR trajectories.
+"""Run the full md_analysis pipeline suite over the pHLA-TCR trajectories.
 
 The source trajectories under ``SOURCE_ROOT`` are already PBC-corrected and
 converted (``md_processed.xtc`` + ``md_processed_converted.pdb``), so the
@@ -29,8 +29,8 @@ import time
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
 
-from immunoscope.core.task_discovery import TaskDiscoverer
-from immunoscope.pipeline import (
+from md_analysis.core.task_discovery import TaskDiscoverer
+from md_analysis.pipeline import (
     AnnotatedRMSFPipeline,
     BatchExecutor,
     BiologicalIdentityPipeline,
@@ -141,8 +141,8 @@ def run_trajectory(task: dict, stages: list[str], output_root_str: str, stride: 
     for var in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "NUMEXPR_NUM_THREADS"):
         os.environ.setdefault(var, "1")
 
-    from immunoscope.core.task_discovery import TaskDiscoverer
-    from immunoscope.pipeline import BatchExecutor
+    from md_analysis.core.task_discovery import TaskDiscoverer
+    from md_analysis.pipeline import BatchExecutor
 
     output_root = Path(output_root_str)
     discoverer = TaskDiscoverer()
@@ -174,7 +174,7 @@ def run_trajectory(task: dict, stages: list[str], output_root_str: str, stride: 
 
 
 def main(argv=None) -> int:
-    parser = argparse.ArgumentParser(description="Run the ImmunoScope analysis suite over the trajectory set.")
+    parser = argparse.ArgumentParser(description="Run the md_analysis pipeline suite over the trajectory set.")
     parser.add_argument("--ids", default=None, help="Comma-separated trajectory ids (default: all).")
     parser.add_argument("--limit", type=int, default=None, help="Process at most N trajectories.")
     parser.add_argument("--workers", type=int, default=4, help="Parallel workers per stage.")

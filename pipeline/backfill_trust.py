@@ -3,7 +3,7 @@
 ``dynamics_trust``, ``bsa_decomposition.reconciliation`` and ``trust_tier`` are
 pure derivations of data ALREADY in each served ``analysis.json`` (+ the
 ``meta.quality.equilibration`` flag). A full ``extract_analysis --source`` re-run
-would rebuild the whole file from the ImmunoScope source CSVs (re-running
+would rebuild the whole file from the md_analysis source CSVs (re-running
 cdr_contacts / interface_metrics) — overkill, slow, and risky if the source root
 is incomplete. This tool recomputes ONLY the three trust fields in place, reusing
 the exact same functions extract_analysis calls (single source of truth), so

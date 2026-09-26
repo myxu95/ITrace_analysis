@@ -1,4 +1,4 @@
-"""Curate the heavy ImmunoScope analysis output into compact web assets.
+"""Curate the heavy per-system analysis output into compact web assets.
 
 The batch run (``pipeline.run_analysis``) writes a large tree of CSV/JSON/PNG
 files per trajectory under an analysis output root. For the website we only need
@@ -30,14 +30,13 @@ from pipeline import cdr_contacts
 from pipeline import interface_metrics
 from pipeline import struct_metrics
 
-# Provenance of the external analysis tool that produced the per-stage data, so
-# the served analysis.json is traceable to a tool version (it is not pip-installable
-# and lives outside this repo). Update if ImmunoScope is upgraded.
+# Identifies the analysis toolkit that produced the per-stage data, so the
+# served analysis.json records which code computed it. The toolkit is
+# archived in this repository as `md_analysis/`; no independently verifiable
+# commit hash is recorded for the code that produced the published dataset.
 ANALYSIS_PROVENANCE = {
-    "tool": "ImmunoScope",
+    "tool": "md_analysis",
     "version": "0.1.0",
-    "source_commit": "cbb0ae2b",
-    "source_path": "/media/xmy/Myyyy/p8_backup/development/Immunex/immunoscope",
 }
 
 # Per-stage JSON summary locations, relative to <source>/<stage>/<traj_id>/.
@@ -262,7 +261,7 @@ def _merge_peptide_struct(analysis: dict, peptide_hla: dict) -> None:
     """Add HLA-contact / SASA / anchor flag to each peptide_table row.
 
     NOTE: ``struct_metrics`` now patches analysis.json directly with the identical
-    rule (it is CSV-free and no longer needs the ImmunoScope source root); this
+    rule (it is CSV-free and no longer needs the md_analysis source root); this
     legacy helper is kept for the full-``extract_analysis`` path and mirrors it.
     An anchor is buried (low absolute per-residue SASA < ``ANCHOR_SASA_MAX_NM2`` —
     the saturating ``hla_contact`` cannot resolve burial) AND ignored by the TCR
@@ -366,7 +365,7 @@ def main(argv=None) -> int:
                 analysis["geometry"] = struct["geometry"]
             if struct.get("bsa_decomposition"):
                 analysis["bsa_decomposition"] = struct["bsa_decomposition"]
-                # Cross-check against ImmunoScope's one-sided BSA (self-consistency gate).
+                # Cross-check against md_analysis's one-sided BSA (self-consistency gate).
                 recon = struct_metrics.bsa_reconciliation(analysis.get("bsa"), struct["bsa_decomposition"])
                 if recon:
                     analysis["bsa_decomposition"]["reconciliation"] = recon

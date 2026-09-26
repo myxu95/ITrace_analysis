@@ -1,0 +1,47 @@
+; nvt.mdp — 100 ps NVT equilibration at 310 K, heavy-atom position restraints
+; ITrace reproduction protocol · GROMACS + CHARMM36 (Jul 2021) / TIP3P
+define          = -DPOSRES
+integrator      = md
+dt              = 0.002          ; 2 fs
+nsteps          = 50000          ; 100 ps
+
+; output
+nstxout-compressed = 5000
+nstlog          = 5000
+nstenergy       = 5000
+
+; bonds / constraints
+continuation         = no
+constraint_algorithm = lincs
+constraints          = h-bonds
+lincs_order          = 4
+
+; neighbour searching
+cutoff-scheme   = Verlet
+nstlist         = 40
+pbc             = xyz
+rlist           = 1.2
+
+; electrostatics + van der Waals (CHARMM36)
+coulombtype     = PME
+rcoulomb        = 1.2
+fourierspacing  = 0.16
+pme_order       = 4
+vdwtype         = cutoff
+vdw-modifier    = force-switch
+rvdw-switch     = 1.0
+rvdw            = 1.2
+
+; temperature coupling — solute and solvent coupled separately
+tcoupl          = V-rescale
+tc-grps         = Protein  Non-Protein
+tau_t           = 0.2      0.2
+ref_t           = 310      310
+
+; pressure — off during NVT
+pcoupl          = no
+
+; generate initial velocities at 273 K, then couple up to 310 K
+gen_vel         = yes
+gen_temp        = 273
+gen_seed        = -1
