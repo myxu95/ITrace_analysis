@@ -1,0 +1,2 @@
+"""ImmunoScope lightweight web application."""
+

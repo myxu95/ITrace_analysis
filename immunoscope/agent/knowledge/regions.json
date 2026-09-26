@@ -1,0 +1,417 @@
+{
+  "tcr_regions": {
+    "CDR3alpha": {
+      "full_name": "Complementarity-Determining Region 3 Alpha",
+      "typical_length": "10-15 residues",
+      "function": "Primary peptide recognition, determines fine specificity",
+      "contact_target": "Peptide center (P4-P6 positions)",
+      "variability": "Extreme (somatically recombined)",
+      "mutation_tolerance": "High",
+      "typical_rmsf": "2-5 Å",
+      "design_priority": "Primary target",
+      "common_hotspots": ["Y98", "F97", "N96", "S99"],
+      "design_notes": "Central to specificity, aromatic residues common, high flexibility allows induced fit",
+      "recommended_mutations": [
+        "Aromatic substitutions (Y↔F↔W)",
+        "Charged optimization (R↔K, E↔D)",
+        "Hydrophobic enhancement"
+      ],
+      "avoid_mutations": [
+        "Charge reversal (R→E)",
+        "Introducing Proline",
+        "Multiple simultaneous changes"
+      ]
+    },
+    "CDR3beta": {
+      "full_name": "Complementarity-Determining Region 3 Beta",
+      "typical_length": "12-18 residues",
+      "function": "Primary peptide recognition, major binding energy contributor",
+      "contact_target": "Peptide center and C-terminal region",
+      "variability": "Extreme (somatically recombined)",
+      "mutation_tolerance": "High",
+      "typical_rmsf": "2-5 Å",
+      "design_priority": "Primary target",
+      "common_hotspots": ["R155", "Y156", "F154", "K153"],
+      "design_notes": "Longer than CDR3α, contacts both peptide and MHC, major affinity determinant",
+      "recommended_mutations": [
+        "Aromatic substitutions",
+        "Salt bridge optimization",
+        "Hydrophobic core enhancement"
+      ],
+      "avoid_mutations": [
+        "Charge reversal",
+        "Framework-proximal positions",
+        "Bulky substitutions causing clashes"
+      ]
+    },
+    "CDR1alpha": {
+      "full_name": "Complementarity-Determining Region 1 Alpha",
+      "typical_length": "5-7 residues",
+      "function": "MHC α2 helix contact, MHC restriction",
+      "contact_target": "MHC α2 helix",
+      "variability": "Moderate (germline-encoded)",
+      "mutation_tolerance": "Moderate",
+      "typical_rmsf": "1-2 Å",
+      "design_priority": "Secondary target",
+      "design_notes": "Germline-encoded, provides MHC-binding framework",
+      "recommended_mutations": [
+        "MHC contact optimization (if needed)",
+        "Conservative substitutions only"
+      ],
+      "avoid_mutations": [
+        "Conserved germline positions",
+        "Multiple CDR1 mutations"
+      ]
+    },
+    "CDR2alpha": {
+      "full_name": "Complementarity-Determining Region 2 Alpha",
+      "typical_length": "6-8 residues",
+      "function": "MHC α2 helix and peptide N-terminus contact",
+      "contact_target": "MHC helix, peptide P1-P2",
+      "variability": "Moderate (germline-encoded)",
+      "mutation_tolerance": "Moderate",
+      "typical_rmsf": "1-2 Å",
+      "design_priority": "Secondary target",
+      "design_notes": "Modulates MHC restriction and peptide terminus contact",
+      "recommended_mutations": [
+        "Peptide terminus contact enhancement",
+        "MHC complementarity"
+      ],
+      "avoid_mutations": [
+        "Germline-conserved positions",
+        "Framework-proximal residues"
+      ]
+    },
+    "CDR1beta": {
+      "full_name": "Complementarity-Determining Region 1 Beta",
+      "typical_length": "5-7 residues",
+      "function": "MHC α1 helix contact, MHC restriction",
+      "contact_target": "MHC α1 helix",
+      "variability": "Moderate (germline-encoded)",
+      "mutation_tolerance": "Moderate",
+      "typical_rmsf": "1-2 Å",
+      "design_priority": "Secondary target",
+      "design_notes": "Germline-encoded, provides MHC-binding framework",
+      "recommended_mutations": [
+        "MHC contact optimization (if needed)"
+      ],
+      "avoid_mutations": [
+        "Conserved positions",
+        "Multiple simultaneous changes"
+      ]
+    },
+    "CDR2beta": {
+      "full_name": "Complementarity-Determining Region 2 Beta",
+      "typical_length": "6-8 residues",
+      "function": "MHC α1 helix and peptide C-terminus contact",
+      "contact_target": "MHC helix, peptide PΩ-1/PΩ",
+      "variability": "Moderate (germline-encoded)",
+      "mutation_tolerance": "Moderate",
+      "typical_rmsf": "1-2 Å",
+      "design_priority": "Secondary target",
+      "design_notes": "Modulates MHC restriction and peptide C-terminus contact",
+      "recommended_mutations": [
+        "Peptide terminus contact enhancement"
+      ],
+      "avoid_mutations": [
+        "Germline-conserved positions"
+      ]
+    },
+    "framework_alpha": {
+      "full_name": "Framework Region Alpha Chain",
+      "function": "Structural scaffold, maintains β-sheet integrity, positions CDR loops",
+      "variability": "Low (conserved)",
+      "mutation_tolerance": "Low",
+      "typical_rmsf": "0.5-1.5 Å",
+      "design_priority": "Avoid unless necessary",
+      "design_notes": "Structurally conserved, mutations may destabilize fold",
+      "recommended_mutations": [
+        "Surface-exposed positions only",
+        "Humanization (mouse→human)",
+        "Stability engineering (rare)"
+      ],
+      "avoid_mutations": [
+        "Buried hydrophobic core",
+        "CDR-supporting positions",
+        "Conserved structural motifs"
+      ]
+    },
+    "framework_beta": {
+      "full_name": "Framework Region Beta Chain",
+      "function": "Structural scaffold, maintains β-sheet integrity, positions CDR loops",
+      "variability": "Low (conserved)",
+      "mutation_tolerance": "Low",
+      "typical_rmsf": "0.5-1.5 Å",
+      "design_priority": "Avoid unless necessary",
+      "design_notes": "Structurally conserved, mutations may destabilize fold",
+      "recommended_mutations": [
+        "Surface-exposed positions only",
+        "Humanization",
+        "Stability engineering (rare)"
+      ],
+      "avoid_mutations": [
+        "Buried core",
+        "CDR-supporting positions",
+        "Conserved motifs"
+      ]
+    }
+  },
+  "peptide_positions": {
+    "P1": {
+      "position": "N-terminus anchor",
+      "typical_burial": "High (>90% buried in MHC groove)",
+      "tcr_contact": "Minimal (mainly CDR2α)",
+      "variability": "Low (anchor residue)",
+      "mutation_tolerance": "Very Low",
+      "design_priority": "Avoid (unless improving MHC binding)",
+      "function": "MHC binding anchor, critical for peptide-MHC stability",
+      "hla_preferences": {
+        "HLA-A*02:01": ["L", "M", "V", "I"],
+        "HLA-A*01:01": ["T", "S", "D", "E"],
+        "HLA-A*03:01": ["L", "M", "V", "I"],
+        "HLA-B*07:02": ["P"]
+      },
+      "design_notes": "Only mutate to improve MHC binding. Use MHC binding prediction tools.",
+      "recommended_mutations": [
+        "Conservative substitutions maintaining anchor properties",
+        "Guided by HLA allele-specific motifs"
+      ],
+      "avoid_mutations": [
+        "Non-anchor residues (will abolish MHC binding)",
+        "Charged residues (unless HLA-specific)",
+        "Bulky residues (W, F, Y)"
+      ]
+    },
+    "P2": {
+      "position": "N-terminus anchor",
+      "typical_burial": "High (>90% buried in MHC groove)",
+      "tcr_contact": "Minimal (mainly CDR2α)",
+      "variability": "Low (anchor residue)",
+      "mutation_tolerance": "Very Low",
+      "design_priority": "Avoid (unless improving MHC binding)",
+      "function": "Primary MHC binding anchor, most critical for peptide-MHC stability",
+      "hla_preferences": {
+        "HLA-A*02:01": ["L", "M", "V", "I", "A"],
+        "HLA-A*01:01": ["T", "S", "D", "E"],
+        "HLA-A*03:01": ["L", "M", "V", "I"],
+        "HLA-B*07:02": ["P"]
+      },
+      "design_notes": "Most critical anchor. Only mutate to improve MHC binding. Always check MHC binding prediction.",
+      "recommended_mutations": [
+        "Optimize to preferred anchor for HLA allele",
+        "Conservative substitutions within anchor class"
+      ],
+      "avoid_mutations": [
+        "Non-anchor residues (will abolish MHC binding)",
+        "Polar residues for hydrophobic anchors",
+        "Hydrophobic residues for polar anchors"
+      ]
+    },
+    "P3": {
+      "position": "N-terminal exposed",
+      "typical_burial": "Moderate (30-50%)",
+      "tcr_contact": "Moderate (CDR1α/CDR2α)",
+      "variability": "Moderate",
+      "mutation_tolerance": "Moderate",
+      "design_priority": "Secondary target",
+      "function": "Modulates peptide conformation and TCR CDR1/2 contact",
+      "design_notes": "Can fine-tune TCR recognition without disrupting MHC binding. Conservative substitutions recommended.",
+      "recommended_mutations": [
+        "Conservative substitutions maintaining size",
+        "Optimize CDR1/2 contacts if identified as hotspot"
+      ],
+      "avoid_mutations": [
+        "Drastic size changes (may affect peptide conformation)",
+        "Introducing Proline (may rigidify peptide)"
+      ]
+    },
+    "P4": {
+      "position": "Central exposed",
+      "typical_burial": "Low (<20%, solvent-exposed)",
+      "tcr_contact": "High (CDR3α/β)",
+      "variability": "High",
+      "mutation_tolerance": "High",
+      "design_priority": "Primary target for TCR recognition",
+      "function": "Primary TCR contact, major specificity determinant",
+      "design_notes": "Prime target for enhancing or reducing TCR recognition. High tolerance for mutations.",
+      "recommended_mutations": [
+        "Aromatic residues (F, Y, W) for π-π stacking with TCR",
+        "Charged residues (E, D, K, R) for salt bridges with TCR",
+        "Hydrophobic residues (L, I, V, M) for hydrophobic contacts"
+      ],
+      "avoid_mutations": [
+        "Mutations that disrupt MHC contact (check MHC binding prediction)",
+        "Over-optimization (super-agonists may cause T cell exhaustion)"
+      ]
+    },
+    "P5": {
+      "position": "Central exposed",
+      "typical_burial": "Low (<20%, solvent-exposed)",
+      "tcr_contact": "High (CDR3α/β)",
+      "variability": "High",
+      "mutation_tolerance": "High",
+      "design_priority": "Primary target for TCR recognition",
+      "function": "Primary TCR contact, major specificity determinant, often the most critical position",
+      "design_notes": "Often the most important position for TCR recognition. Highest tolerance for mutations.",
+      "recommended_mutations": [
+        "Aromatic residues (F, Y, W) for π-π stacking",
+        "Charged residues (E, D, K, R) for salt bridges",
+        "Hydrophobic residues (L, I, V, M) for hydrophobic contacts"
+      ],
+      "avoid_mutations": [
+        "Mutations that disrupt MHC contact (rare but check)",
+        "Over-optimization (target 3-10x improvement, not 100x)"
+      ]
+    },
+    "P6": {
+      "position": "Central exposed",
+      "typical_burial": "Low (<20%, solvent-exposed)",
+      "tcr_contact": "High (CDR3β primarily)",
+      "variability": "High",
+      "mutation_tolerance": "High",
+      "design_priority": "Primary target for TCR recognition",
+      "function": "Primary TCR contact, specificity determinant, often contacts CDR3β",
+      "design_notes": "Prime target for TCR recognition. Often contacts CDR3β more than CDR3α.",
+      "recommended_mutations": [
+        "Aromatic residues (F, Y, W) for π-π stacking",
+        "Charged residues (E, D, K, R) for salt bridges",
+        "Hydrophobic residues (L, I, V, M) for hydrophobic contacts"
+      ],
+      "avoid_mutations": [
+        "Mutations that disrupt MHC contact (check MHC binding prediction)",
+        "Over-optimization"
+      ]
+    },
+    "P7": {
+      "position": "C-terminal exposed",
+      "typical_burial": "Moderate (30-50%)",
+      "tcr_contact": "Moderate (CDR2β/CDR3β)",
+      "variability": "Moderate",
+      "mutation_tolerance": "Moderate",
+      "design_priority": "Secondary target",
+      "function": "Modulates peptide conformation and TCR CDR2/3 contact",
+      "design_notes": "Can fine-tune TCR recognition. Conservative substitutions recommended.",
+      "recommended_mutations": [
+        "Conservative substitutions maintaining size",
+        "Optimize CDR2/3 contacts if identified as hotspot"
+      ],
+      "avoid_mutations": [
+        "Drastic size changes (may affect peptide conformation)",
+        "Introducing Proline (may rigidify peptide)"
+      ]
+    },
+    "P8": {
+      "position": "C-terminus anchor (for 9-mers)",
+      "typical_burial": "High (>90% buried in MHC groove)",
+      "tcr_contact": "Minimal",
+      "variability": "Low (anchor residue)",
+      "mutation_tolerance": "Very Low",
+      "design_priority": "Avoid (unless improving MHC binding)",
+      "function": "C-terminal MHC binding anchor",
+      "hla_preferences": {
+        "HLA-A*02:01": ["V", "L", "I", "A"],
+        "HLA-A*01:01": ["Y", "F"],
+        "HLA-A*03:01": ["K", "R"],
+        "HLA-B*07:02": ["L", "M", "A"]
+      },
+      "design_notes": "C-terminal anchor (PΩ for 9-mers). Only mutate to improve MHC binding.",
+      "recommended_mutations": [
+        "Optimize to preferred anchor for HLA allele"
+      ],
+      "avoid_mutations": [
+        "Non-anchor residues (will abolish MHC binding)"
+      ]
+    },
+    "P9": {
+      "position": "C-terminus anchor (for 10-mers)",
+      "typical_burial": "High (>90% buried in MHC groove)",
+      "tcr_contact": "Minimal",
+      "variability": "Low (anchor residue)",
+      "mutation_tolerance": "Very Low",
+      "design_priority": "Avoid (unless improving MHC binding)",
+      "function": "C-terminal MHC binding anchor",
+      "hla_preferences": {
+        "HLA-A*02:01": ["V", "L", "I", "A"],
+        "HLA-A*01:01": ["Y", "F"],
+        "HLA-A*03:01": ["K", "R"],
+        "HLA-B*07:02": ["L", "M", "A"]
+      },
+      "design_notes": "C-terminal anchor (PΩ for 10-mers). Only mutate to improve MHC binding.",
+      "recommended_mutations": [
+        "Optimize to preferred anchor for HLA allele"
+      ],
+      "avoid_mutations": [
+        "Non-anchor residues (will abolish MHC binding)"
+      ]
+    }
+  },
+  "interface_zones": {
+    "core_interface": {
+      "definition": "Residues with >50% burial upon binding",
+      "typical_composition": "Hydrophobic and aromatic residues",
+      "function": "Provide binding energy, shape complementarity",
+      "typical_bsa_contribution": "60-70% of total BSA",
+      "mutation_impact": "High - directly affects affinity",
+      "design_notes": "Prime target for affinity enhancement"
+    },
+    "peripheral_interface": {
+      "definition": "Residues with 20-50% burial",
+      "typical_composition": "Mix of polar and charged residues",
+      "function": "Electrostatic steering, specificity tuning",
+      "typical_bsa_contribution": "20-30% of total BSA",
+      "mutation_impact": "Moderate - affects kinetics and specificity",
+      "design_notes": "Target for specificity tuning"
+    },
+    "rim_region": {
+      "definition": "Residues near interface but not buried (<20%)",
+      "typical_composition": "Charged and polar residues",
+      "function": "Electrostatic pre-orientation, solubility",
+      "typical_bsa_contribution": "5-10% of total BSA",
+      "mutation_impact": "Low to moderate - affects association rate",
+      "design_notes": "Can modulate kinetics, lower priority"
+    }
+  },
+  "functional_classifications": {
+    "hotspot_residue": {
+      "definition": "Residue contributing >2 kcal/mol to binding energy",
+      "identification": "RRCS > 3.0, alanine scanning ΔΔG > 2 kcal/mol",
+      "typical_characteristics": [
+        "Aromatic (Y, F, W) or charged (R, K, E, D)",
+        "Located in CDR3 loops",
+        "Form multiple interactions (H-bonds + hydrophobic)",
+        "High occupancy (>80%)"
+      ],
+      "design_relevance": "Prime targets for affinity enhancement",
+      "mutation_strategy": "Optimize interaction type (aromatic stacking, salt bridge geometry)"
+    },
+    "anchor_residue": {
+      "definition": "Residue maintaining structural integrity",
+      "typical_location": "Framework regions, CDR loop bases",
+      "typical_characteristics": [
+        "Conserved across TCR repertoire",
+        "Buried in structure",
+        "Form internal H-bonds or hydrophobic core"
+      ],
+      "design_relevance": "Avoid mutation - high risk of destabilization",
+      "mutation_strategy": "Do not mutate unless absolutely necessary"
+    },
+    "specificity_residue": {
+      "definition": "Residue discriminating between similar peptides",
+      "typical_location": "CDR3 loops contacting variable peptide positions (P4-P6)",
+      "typical_characteristics": [
+        "Variable across TCR repertoire",
+        "Direct peptide contact",
+        "Differential contact across peptide variants"
+      ],
+      "design_relevance": "Target for specificity tuning, cross-reactivity control",
+      "mutation_strategy": "Optimize shape/electrostatic complementarity to target peptide"
+    },
+    "flexibility_residue": {
+      "definition": "Residue in high-flexibility region (RMSF > 2 Å)",
+      "typical_location": "CDR3 loops, peptide center",
+      "function": "Conformational adaptation, induced fit",
+      "design_relevance": "High flexibility = tolerates mutations, allows optimization",
+      "mutation_strategy": "Can introduce changes with lower risk of structural disruption"
+    }
+  }
+}

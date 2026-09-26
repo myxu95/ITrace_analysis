@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ImmunoScope Web</title>
+  <link rel="icon" href="/static/immunoscope-logo-icon.png" type="image/png">
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">
+          <img src="/static/immunoscope-logo-icon.png" alt="ImmunoScope logo">
+        </div>
+        <div>
+          <strong>ImmunoScope</strong>
+          <span>MD Analysis Platform</span>
+        </div>
+      </div>
+      <nav class="nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Workspace</div>
+          <a href="#/" data-page="dashboard">
+            <i class="nav-icon" data-lucide="layout-dashboard"></i>
+            <span>Dashboard</span>
+          </a>
+          <a href="#/projects" data-page="projects">
+            <i class="nav-icon" data-lucide="folder-kanban"></i>
+            <span>Projects</span>
+          </a>
+          <a href="#/jobs" data-page="jobs">
+            <i class="nav-icon" data-lucide="activity"></i>
+            <span>Jobs</span>
+            <span class="nav-badge">3</span>
+          </a>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-section-title">Analysis</div>
+          <a href="#/new" data-page="new">
+            <i class="nav-icon" data-lucide="flask-conical"></i>
+            <span>New Analysis</span>
+          </a>
+          <a href="#/compare" data-page="compare">
+            <i class="nav-icon" data-lucide="git-compare-arrows"></i>
+            <span>Compare</span>
+          </a>
+          <a href="#/reports" data-page="reports">
+            <i class="nav-icon" data-lucide="file-text"></i>
+            <span>Reports</span>
+          </a>
+          <a href="#/trajectories" data-page="trajectories">
+            <i class="nav-icon" data-lucide="waves"></i>
+            <span>Trajectories</span>
+          </a>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-section-title">AI</div>
+          <a href="#/copilot" data-page="copilot" class="nav-ai">
+            <i class="nav-icon" data-lucide="brain-circuit"></i>
+            <span>ImmunoScope</span>
+            <span style="font-size:9px;font-weight:800;letter-spacing:0.05em;color:var(--accent-strong);text-transform:uppercase;margin-left:6px;">Design</span>
+          </a>
+          <a href="#/agent" data-page="agent">
+            <i class="nav-icon" data-lucide="sparkles"></i>
+            <span>Query-Agent</span>
+            <span style="font-size:9px;font-weight:800;letter-spacing:0.05em;color:var(--muted);text-transform:uppercase;margin-left:6px;">Q&amp;A</span>
+            <span class="status-dot"></span>
+          </a>
+          <a href="#/knowledge" data-page="knowledge">
+            <i class="nav-icon" data-lucide="database"></i>
+            <span>Knowledge Base</span>
+          </a>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-section-title">System</div>
+          <a href="#/settings" data-page="settings">
+            <i class="nav-icon" data-lucide="settings"></i>
+            <span>Settings</span>
+          </a>
+          <a href="#/docs" data-page="docs">
+            <i class="nav-icon" data-lucide="book-open"></i>
+            <span>Documentation</span>
+          </a>
+        </div>
+      </nav>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <h1 id="page-title">Dashboard</h1>
+        <span class="pill">local web preview</span>
+      </header>
+      <section id="page-content" class="content"></section>
+    </main>
+  </div>
+  <script src="/static/lib/smiles-drawer.min.js"></script>
+  <script src="/static/lib/ngl.js"></script>
+  <script src="/static/app.js"></script>
+  <script>
+    if (window.lucide) {
+      window.lucide.createIcons({ attrs: { "stroke-width": 2 } });
+    }
+  </script>
+</body>
+</html>

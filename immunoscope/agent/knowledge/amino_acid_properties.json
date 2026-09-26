@@ -1,0 +1,235 @@
+{
+  "description": "Complete physicochemical properties of 20 standard amino acids for TCR-pMHC mutation design",
+  "version": "1.0",
+  "amino_acids": {
+    "ALA": {
+      "one_letter": "A", "three_letter": "ALA", "full_name": "Alanine",
+      "properties": {"mw": 89.09, "hydrophobicity_kd": 1.8, "hydrophobicity_hw": -0.5, "hydrophobicity_eb": 0.62, "polarity": "nonpolar", "charge": "neutral", "pka": null, "size": "small", "volume": 88.6, "aromaticity": false, "flexibility": "rigid", "h_bond_donor": false, "h_bond_acceptor": false, "helix_propensity": 1.42, "sheet_propensity": 0.83},
+      "classification": {"chemical": "aliphatic", "structural": "helix_former", "functional": "hydrophobic_core"},
+      "conservative_substitutions": ["VAL", "SER", "GLY", "THR"],
+      "similar_properties": ["VAL", "LEU", "ILE"],
+      "avoid_substitutions": ["PRO", "GLU", "ASP", "LYS", "ARG", "TRP"],
+      "design_notes": "Smallest non-glycine amino acid; good for tight spaces but adds minimal interaction"
+    },
+    "ARG": {
+      "one_letter": "R", "three_letter": "ARG", "full_name": "Arginine",
+      "properties": {"mw": 174.20, "hydrophobicity_kd": -4.5, "hydrophobicity_hw": 3.0, "hydrophobicity_eb": -2.53, "polarity": "polar", "charge": "positive", "pka": 12.48, "size": "large", "volume": 173.4, "aromaticity": false, "flexibility": "flexible", "h_bond_donor": true, "h_bond_acceptor": false, "helix_propensity": 0.98, "sheet_propensity": 0.93},
+      "classification": {"chemical": "basic", "structural": "flexible", "functional": "salt_bridge_former"},
+      "conservative_substitutions": ["LYS", "HIS"],
+      "similar_properties": ["LYS"],
+      "avoid_substitutions": ["GLU", "ASP", "PRO"],
+      "design_notes": "Strong positive charge, long flexible sidechain; forms bidentate H-bonds; can form cation-pi with aromatics"
+    },
+    "ASN": {
+      "one_letter": "N", "three_letter": "ASN", "full_name": "Asparagine",
+      "properties": {"mw": 132.12, "hydrophobicity_kd": -3.5, "hydrophobicity_hw": 0.2, "hydrophobicity_eb": -0.78, "polarity": "polar", "charge": "neutral", "pka": null, "size": "small", "volume": 114.1, "aromaticity": false, "flexibility": "moderate", "h_bond_donor": true, "h_bond_acceptor": true, "helix_propensity": 0.67, "sheet_propensity": 0.89},
+      "classification": {"chemical": "amide", "structural": "loop_former", "functional": "h_bond_network"},
+      "conservative_substitutions": ["GLN", "SER", "THR", "ASP"],
+      "similar_properties": ["GLN", "ASP"],
+      "avoid_substitutions": ["PRO", "TRP"],
+      "design_notes": "Bifunctional H-bond capability; common in turns and loops; watch for deamidation"
+    },
+    "ASP": {
+      "one_letter": "D", "three_letter": "ASP", "full_name": "Aspartate",
+      "properties": {"mw": 133.10, "hydrophobicity_kd": -3.5, "hydrophobicity_hw": 3.0, "hydrophobicity_eb": -0.90, "polarity": "polar", "charge": "negative", "pka": 3.65, "size": "small", "volume": 111.1, "aromaticity": false, "flexibility": "moderate", "h_bond_donor": false, "h_bond_acceptor": true, "helix_propensity": 1.01, "sheet_propensity": 0.54},
+      "classification": {"chemical": "acidic", "structural": "loop_former", "functional": "salt_bridge_former"},
+      "conservative_substitutions": ["GLU", "ASN"],
+      "similar_properties": ["GLU"],
+      "avoid_substitutions": ["LYS", "ARG", "PRO"],
+      "design_notes": "Short negative sidechain; compact salt bridges; D to E adds reach but changes geometry"
+    },
+    "CYS": {
+      "one_letter": "C", "three_letter": "CYS", "full_name": "Cysteine",
+      "properties": {"mw": 121.16, "hydrophobicity_kd": 2.5, "hydrophobicity_hw": -1.0, "hydrophobicity_eb": 0.29, "polarity": "polar", "charge": "neutral", "pka": 8.33, "size": "small", "volume": 108.5, "aromaticity": false, "flexibility": "moderate", "h_bond_donor": true, "h_bond_acceptor": true, "helix_propensity": 0.70, "sheet_propensity": 1.19},
+      "classification": {"chemical": "sulfur_containing", "structural": "disulfide_former", "functional": "redox_sensitive"},
+      "conservative_substitutions": ["SER", "ALA"],
+      "similar_properties": ["SER", "MET"],
+      "avoid_substitutions": ["PRO", "LYS", "ARG", "GLU"],
+      "design_notes": "Can form disulfide bonds; avoid introducing unpaired Cys (aggregation risk)"
+    },
+    "GLN": {
+      "one_letter": "Q", "three_letter": "GLN", "full_name": "Glutamine",
+      "properties": {"mw": 146.15, "hydrophobicity_kd": -3.5, "hydrophobicity_hw": 0.2, "hydrophobicity_eb": -0.85, "polarity": "polar", "charge": "neutral", "pka": null, "size": "medium", "volume": 143.8, "aromaticity": false, "flexibility": "flexible", "h_bond_donor": true, "h_bond_acceptor": true, "helix_propensity": 1.11, "sheet_propensity": 1.10},
+      "classification": {"chemical": "amide", "structural": "loop_former", "functional": "h_bond_network"},
+      "conservative_substitutions": ["ASN", "GLU", "LYS"],
+      "similar_properties": ["ASN", "GLU"],
+      "avoid_substitutions": ["PRO"],
+      "design_notes": "Longer reach than ASN; good for solvent-exposed H-bond donors"
+    },
+    "GLU": {
+      "one_letter": "E", "three_letter": "GLU", "full_name": "Glutamate",
+      "properties": {"mw": 147.13, "hydrophobicity_kd": -3.5, "hydrophobicity_hw": 3.0, "hydrophobicity_eb": -0.74, "polarity": "polar", "charge": "negative", "pka": 4.25, "size": "medium", "volume": 138.4, "aromaticity": false, "flexibility": "flexible", "h_bond_donor": false, "h_bond_acceptor": true, "helix_propensity": 1.51, "sheet_propensity": 0.37},
+      "classification": {"chemical": "acidic", "structural": "helix_former", "functional": "salt_bridge_former"},
+      "conservative_substitutions": ["ASP", "GLN"],
+      "similar_properties": ["ASP"],
+      "avoid_substitutions": ["LYS", "ARG", "PRO"],
+      "design_notes": "Longer reach than ASP; optimizes salt bridge geometry at distance; strong helix former"
+    },
+    "GLY": {
+      "one_letter": "G", "three_letter": "GLY", "full_name": "Glycine",
+      "properties": {"mw": 75.07, "hydrophobicity_kd": -0.4, "hydrophobicity_hw": 0.0, "hydrophobicity_eb": 0.48, "polarity": "nonpolar", "charge": "neutral", "pka": null, "size": "tiny", "volume": 60.1, "aromaticity": false, "flexibility": "highly_flexible", "h_bond_donor": false, "h_bond_acceptor": false, "helix_propensity": 0.57, "sheet_propensity": 0.75},
+      "classification": {"chemical": "special", "structural": "turn_former", "functional": "flexibility_provider"},
+      "conservative_substitutions": ["ALA", "SER"],
+      "similar_properties": ["ALA"],
+      "avoid_substitutions": ["PRO", "TRP", "PHE", "TYR"],
+      "design_notes": "No sidechain; maximum backbone flexibility; critical for tight turns; avoid removing from turns"
+    },
+    "HIS": {
+      "one_letter": "H", "three_letter": "HIS", "full_name": "Histidine",
+      "properties": {"mw": 155.16, "hydrophobicity_kd": -3.2, "hydrophobicity_hw": -0.5, "hydrophobicity_eb": -0.40, "polarity": "polar", "charge": "partial_positive", "pka": 6.00, "size": "medium", "volume": 153.2, "aromaticity": true, "flexibility": "moderate", "h_bond_donor": true, "h_bond_acceptor": true, "helix_propensity": 1.00, "sheet_propensity": 0.87},
+      "classification": {"chemical": "basic", "structural": "versatile", "functional": "metal_binding"},
+      "conservative_substitutions": ["ASN", "GLN", "LYS", "ARG"],
+      "similar_properties": ["LYS", "ARG"],
+      "avoid_substitutions": ["PRO", "GLY"],
+      "design_notes": "pH-sensitive (pKa ~6.0); can be aromatic or charged; participates in catalysis and metal binding"
+    },
+    "ILE": {
+      "one_letter": "I", "three_letter": "ILE", "full_name": "Isoleucine",
+      "properties": {"mw": 131.17, "hydrophobicity_kd": 4.5, "hydrophobicity_hw": -1.8, "hydrophobicity_eb": 1.38, "polarity": "nonpolar", "charge": "neutral", "pka": null, "size": "medium", "volume": 166.7, "aromaticity": false, "flexibility": "rigid", "h_bond_donor": false, "h_bond_acceptor": false, "helix_propensity": 1.08, "sheet_propensity": 1.60},
+      "classification": {"chemical": "aliphatic", "structural": "sheet_former", "functional": "hydrophobic_core"},
+      "conservative_substitutions": ["LEU", "VAL", "MET"],
+      "similar_properties": ["LEU", "VAL"],
+      "avoid_substitutions": ["PRO", "GLU", "ASP", "LYS", "ARG", "GLY"],
+      "design_notes": "Beta-branched; strong sheet former; similar to LEU but more rigid due to beta-branching"
+    },
+    "LEU": {
+      "one_letter": "L", "three_letter": "LEU", "full_name": "Leucine",
+      "properties": {"mw": 131.17, "hydrophobicity_kd": 3.8, "hydrophobicity_hw": -1.8, "hydrophobicity_eb": 1.06, "polarity": "nonpolar", "charge": "neutral", "pka": null, "size": "medium", "volume": 166.7, "aromaticity": false, "flexibility": "rigid", "h_bond_donor": false, "h_bond_acceptor": false, "helix_propensity": 1.21, "sheet_propensity": 1.30},
+      "classification": {"chemical": "aliphatic", "structural": "helix_former", "functional": "hydrophobic_core"},
+      "conservative_substitutions": ["ILE", "VAL", "MET"],
+      "similar_properties": ["ILE", "VAL", "MET"],
+      "avoid_substitutions": ["PRO", "GLU", "ASP", "LYS", "ARG", "GLY"],
+      "design_notes": "Most common amino acid in proteins; strong helix former; preferred for hydrophobic cores"
+    },
+    "LYS": {
+      "one_letter": "K", "three_letter": "LYS", "full_name": "Lysine",
+      "properties": {"mw": 146.19, "hydrophobicity_kd": -3.9, "hydrophobicity_hw": 3.0, "hydrophobicity_eb": -1.50, "polarity": "polar", "charge": "positive", "pka": 10.53, "size": "large", "volume": 168.6, "aromaticity": false, "flexibility": "flexible", "h_bond_donor": true, "h_bond_acceptor": false, "helix_propensity": 1.16, "sheet_propensity": 0.74},
+      "classification": {"chemical": "basic", "structural": "flexible", "functional": "salt_bridge_former"},
+      "conservative_substitutions": ["ARG", "HIS", "GLN"],
+      "similar_properties": ["ARG"],
+      "avoid_substitutions": ["GLU", "ASP", "PRO"],
+      "design_notes": "Long flexible positive sidechain; monodentate H-bonds; K to R adds bidentate H-bond capability"
+    },
+    "MET": {
+      "one_letter": "M", "three_letter": "MET", "full_name": "Methionine",
+      "properties": {"mw": 149.21, "hydrophobicity_kd": 1.9, "hydrophobicity_hw": -1.3, "hydrophobicity_eb": 0.64, "polarity": "nonpolar", "charge": "neutral", "pka": null, "size": "medium", "volume": 162.9, "aromaticity": false, "flexibility": "flexible", "h_bond_donor": false, "h_bond_acceptor": false, "helix_propensity": 1.45, "sheet_propensity": 1.05},
+      "classification": {"chemical": "sulfur_containing", "structural": "helix_former", "functional": "hydrophobic_core"},
+      "conservative_substitutions": ["LEU", "ILE", "VAL"],
+      "similar_properties": ["LEU", "ILE"],
+      "avoid_substitutions": ["PRO", "GLY", "LYS", "ARG", "GLU", "ASP"],
+      "design_notes": "Flexible sulfur-containing sidechain; oxidation-sensitive; good helix former"
+    },
+    "PHE": {
+      "one_letter": "F", "three_letter": "PHE", "full_name": "Phenylalanine",
+      "properties": {"mw": 165.19, "hydrophobicity_kd": 2.8, "hydrophobicity_hw": -2.5, "hydrophobicity_eb": 1.19, "polarity": "nonpolar", "charge": "neutral", "pka": null, "size": "large", "volume": 189.9, "aromaticity": true, "flexibility": "rigid", "h_bond_donor": false, "h_bond_acceptor": false, "helix_propensity": 1.13, "sheet_propensity": 1.38},
+      "classification": {"chemical": "aromatic", "structural": "versatile", "functional": "pi_stacking"},
+      "conservative_substitutions": ["TYR", "TRP", "LEU"],
+      "similar_properties": ["TYR", "TRP"],
+      "avoid_substitutions": ["PRO", "GLY", "LYS", "ARG", "GLU", "ASP"],
+      "design_notes": "Smallest aromatic; pure hydrophobic (no H-bond); strong pi-stacking; smaller than TYR/TRP"
+    },
+    "PRO": {
+      "one_letter": "P", "three_letter": "PRO", "full_name": "Proline",
+      "properties": {"mw": 115.13, "hydrophobicity_kd": -1.6, "hydrophobicity_hw": 0.0, "hydrophobicity_eb": 0.12, "polarity": "nonpolar", "charge": "neutral", "pka": null, "size": "small", "volume": 112.7, "aromaticity": false, "flexibility": "highly_rigid", "h_bond_donor": false, "h_bond_acceptor": false, "helix_propensity": 0.57, "sheet_propensity": 0.55},
+      "classification": {"chemical": "special", "structural": "turn_inducer", "functional": "helix_breaker"},
+      "conservative_substitutions": ["ALA", "GLY"],
+      "similar_properties": [],
+      "avoid_substitutions": ["ALL_OTHERS_IN_CDR3"],
+      "design_notes": "Cyclic sidechain restricts backbone; breaks helices; rigidifies loops; avoid introducing into CDR3"
+    },
+    "SER": {
+      "one_letter": "S", "three_letter": "SER", "full_name": "Serine",
+      "properties": {"mw": 105.09, "hydrophobicity_kd": -0.8, "hydrophobicity_hw": 0.3, "hydrophobicity_eb": -0.18, "polarity": "polar", "charge": "neutral", "pka": null, "size": "small", "volume": 89.0, "aromaticity": false, "flexibility": "flexible", "h_bond_donor": true, "h_bond_acceptor": true, "helix_propensity": 0.77, "sheet_propensity": 0.75},
+      "classification": {"chemical": "hydroxyl", "structural": "loop_former", "functional": "h_bond_network"},
+      "conservative_substitutions": ["THR", "ALA", "CYS"],
+      "similar_properties": ["THR"],
+      "avoid_substitutions": ["PRO"],
+      "design_notes": "Small polar; bifunctional H-bond; can be phosphorylated; common in CDR loops"
+    },
+    "THR": {
+      "one_letter": "T", "three_letter": "THR", "full_name": "Threonine",
+      "properties": {"mw": 119.12, "hydrophobicity_kd": -0.7, "hydrophobicity_hw": -0.4, "hydrophobicity_eb": -0.05, "polarity": "polar", "charge": "neutral", "pka": null, "size": "small", "volume": 116.1, "aromaticity": false, "flexibility": "moderate", "h_bond_donor": true, "h_bond_acceptor": true, "helix_propensity": 0.83, "sheet_propensity": 1.19},
+      "classification": {"chemical": "hydroxyl", "structural": "sheet_former", "functional": "h_bond_network"},
+      "conservative_substitutions": ["SER", "VAL", "ALA"],
+      "similar_properties": ["SER"],
+      "avoid_substitutions": ["PRO"],
+      "design_notes": "Beta-branched like VAL/ILE; bifunctional H-bond; better sheet former than SER"
+    },
+    "TRP": {
+      "one_letter": "W", "three_letter": "TRP", "full_name": "Tryptophan",
+      "properties": {"mw": 204.23, "hydrophobicity_kd": -0.9, "hydrophobicity_hw": -3.4, "hydrophobicity_eb": 0.81, "polarity": "nonpolar", "charge": "neutral", "pka": null, "size": "large", "volume": 227.8, "aromaticity": true, "flexibility": "rigid", "h_bond_donor": true, "h_bond_acceptor": false, "helix_propensity": 1.08, "sheet_propensity": 1.37},
+      "classification": {"chemical": "aromatic", "structural": "versatile", "functional": "pi_stacking"},
+      "conservative_substitutions": ["TYR", "PHE"],
+      "similar_properties": ["TYR", "PHE"],
+      "avoid_substitutions": ["PRO", "GLY", "ALA", "LYS", "ARG", "GLU", "ASP"],
+      "design_notes": "Largest aromatic; indole NH donates H-bond; strongest pi-stacking; cation-pi acceptor; watch steric clashes"
+    },
+    "TYR": {
+      "one_letter": "Y", "three_letter": "TYR", "full_name": "Tyrosine",
+      "properties": {"mw": 181.19, "hydrophobicity_kd": -1.3, "hydrophobicity_hw": -2.3, "hydrophobicity_eb": 0.26, "polarity": "polar", "charge": "neutral", "pka": 10.07, "size": "large", "volume": 193.6, "aromaticity": true, "flexibility": "rigid", "h_bond_donor": true, "h_bond_acceptor": true, "helix_propensity": 0.69, "sheet_propensity": 1.47},
+      "classification": {"chemical": "aromatic", "structural": "versatile", "functional": "pi_stacking"},
+      "conservative_substitutions": ["PHE", "TRP", "HIS"],
+      "similar_properties": ["PHE", "TRP"],
+      "avoid_substitutions": ["PRO", "GLY", "LYS", "ARG", "GLU", "ASP"],
+      "design_notes": "Amphipathic aromatic; OH donates/accepts H-bond; can be phosphorylated; intermediate size between PHE and TRP"
+    },
+    "VAL": {
+      "one_letter": "V", "three_letter": "VAL", "full_name": "Valine",
+      "properties": {"mw": 117.15, "hydrophobicity_kd": 4.2, "hydrophobicity_hw": -1.5, "hydrophobicity_eb": 1.08, "polarity": "nonpolar", "charge": "neutral", "pka": null, "size": "medium", "volume": 140.0, "aromaticity": false, "flexibility": "rigid", "h_bond_donor": false, "h_bond_acceptor": false, "helix_propensity": 1.06, "sheet_propensity": 1.70},
+      "classification": {"chemical": "aliphatic", "structural": "sheet_former", "functional": "hydrophobic_core"},
+      "conservative_substitutions": ["ILE", "LEU", "ALA", "THR"],
+      "similar_properties": ["ILE", "LEU"],
+      "avoid_substitutions": ["PRO", "GLY", "LYS", "ARG", "GLU", "ASP"],
+      "design_notes": "Beta-branched; strongest sheet former; smaller than LEU/ILE; rigid"
+    }
+  },
+  "property_scales": {
+    "hydrophobicity_scales_info": {
+      "kyte_doolittle": {"range": "-4.5 to 4.5", "positive": "hydrophobic", "negative": "hydrophilic", "use": "Transmembrane prediction, general hydrophobicity"},
+      "hopp_woods": {"range": "-3.4 to 3.0", "positive": "hydrophilic", "negative": "hydrophobic", "use": "Antigenicity, surface exposure"},
+      "eisenberg": {"range": "-2.53 to 1.38", "positive": "hydrophobic", "negative": "hydrophilic", "use": "Consensus scale, helix amphipathicity"}
+    },
+    "size_groups": {
+      "tiny": ["GLY", "ALA"],
+      "small": ["SER", "PRO", "CYS", "ASN", "ASP", "THR"],
+      "medium": ["VAL", "GLU", "GLN", "ILE", "LEU", "MET", "HIS"],
+      "large": ["LYS", "ARG", "PHE", "TYR", "TRP"]
+    },
+    "charge_groups": {
+      "positive": ["LYS", "ARG", "HIS"],
+      "negative": ["ASP", "GLU"],
+      "neutral_polar": ["SER", "THR", "ASN", "GLN", "TYR", "CYS"],
+      "neutral_nonpolar": ["GLY", "ALA", "VAL", "LEU", "ILE", "MET", "PHE", "TRP", "PRO"]
+    },
+    "aromatic_residues": ["PHE", "TYR", "TRP", "HIS"],
+    "aliphatic_residues": ["ALA", "VAL", "LEU", "ILE", "MET"],
+    "h_bond_donors": ["ARG", "LYS", "HIS", "SER", "THR", "ASN", "GLN", "CYS", "TYR", "TRP"],
+    "h_bond_acceptors": ["ASP", "GLU", "SER", "THR", "ASN", "GLN", "HIS", "CYS", "TYR"]
+  },
+  "substitution_matrix": {
+    "description": "BLOSUM62 substitution scores (higher = more conservative)",
+    "interpretation": {"high_positive": ">= 2 (conservative, low risk)", "moderate": "0 to 1 (neutral, moderate risk)", "negative": "< 0 (non-conservative, higher risk)"},
+    "scores": {
+      "ALA": {"ALA": 4, "ARG": -1, "ASN": -2, "ASP": -2, "CYS": 0, "GLN": -1, "GLU": -1, "GLY": 0, "HIS": -2, "ILE": -1, "LEU": -1, "LYS": -1, "MET": -1, "PHE": -2, "PRO": -1, "SER": 1, "THR": 0, "TRP": -3, "TYR": -2, "VAL": 0},
+      "ARG": {"ALA": -1, "ARG": 5, "ASN": 0, "ASP": -2, "CYS": -3, "GLN": 1, "GLU": 0, "GLY": -2, "HIS": 0, "ILE": -3, "LEU": -2, "LYS": 2, "MET": -1, "PHE": -3, "PRO": -2, "SER": -1, "THR": -1, "TRP": -3, "TYR": -2, "VAL": -3},
+      "ASN": {"ALA": -2, "ARG": 0, "ASN": 6, "ASP": 1, "CYS": -3, "GLN": 0, "GLU": 0, "GLY": 0, "HIS": 1, "ILE": -3, "LEU": -3, "LYS": 0, "MET": -2, "PHE": -3, "PRO": -2, "SER": 1, "THR": 0, "TRP": -4, "TYR": -2, "VAL": -3},
+      "ASP": {"ALA": -2, "ARG": -2, "ASN": 1, "ASP": 6, "CYS": -3, "GLN": 0, "GLU": 2, "GLY": -1, "HIS": -1, "ILE": -3, "LEU": -4, "LYS": -1, "MET": -3, "PHE": -3, "PRO": -1, "SER": 0, "THR": -1, "TRP": -4, "TYR": -3, "VAL": -3},
+      "CYS": {"ALA": 0, "ARG": -3, "ASN": -3, "ASP": -3, "CYS": 9, "GLN": -3, "GLU": -4, "GLY": -3, "HIS": -3, "ILE": -1, "LEU": -1, "LYS": -3, "MET": -1, "PHE": -2, "PRO": -3, "SER": -1, "THR": -1, "TRP": -2, "TYR": -2, "VAL": -1},
+      "GLN": {"ALA": -1, "ARG": 1, "ASN": 0, "ASP": 0, "CYS": -3, "GLN": 5, "GLU": 2, "GLY": -2, "HIS": 0, "ILE": -3, "LEU": -2, "LYS": 1, "MET": 0, "PHE": -3, "PRO": -1, "SER": 0, "THR": -1, "TRP": -2, "TYR": -1, "VAL": -2},
+      "GLU": {"ALA": -1, "ARG": 0, "ASN": 0, "ASP": 2, "CYS": -4, "GLN": 2, "GLU": 5, "GLY": -2, "HIS": 0, "ILE": -3, "LEU": -3, "LYS": 1, "MET": -2, "PHE": -3, "PRO": -1, "SER": 0, "THR": -1, "TRP": -3, "TYR": -2, "VAL": -2},
+      "GLY": {"ALA": 0, "ARG": -2, "ASN": 0, "ASP": -1, "CYS": -3, "GLN": -2, "GLU": -2, "GLY": 6, "HIS": -2, "ILE": -4, "LEU": -4, "LYS": -2, "MET": -3, "PHE": -3, "PRO": -2, "SER": 0, "THR": -2, "TRP": -2, "TYR": -3, "VAL": -3},
+      "HIS": {"ALA": -2, "ARG": 0, "ASN": 1, "ASP": -1, "CYS": -3, "GLN": 0, "GLU": 0, "GLY": -2, "HIS": 8, "ILE": -3, "LEU": -3, "LYS": -1, "MET": -2, "PHE": -1, "PRO": -2, "SER": -1, "THR": -2, "TRP": -2, "TYR": 2, "VAL": -3},
+      "ILE": {"ALA": -1, "ARG": -3, "ASN": -3, "ASP": -3, "CYS": -1, "GLN": -3, "GLU": -3, "GLY": -4, "HIS": -3, "ILE": 4, "LEU": 2, "LYS": -3, "MET": 1, "PHE": 0, "PRO": -3, "SER": -2, "THR": -1, "TRP": -3, "TYR": -1, "VAL": 3},
+      "LEU": {"ALA": -1, "ARG": -2, "ASN": -3, "ASP": -4, "CYS": -1, "GLN": -2, "GLU": -3, "GLY": -4, "HIS": -3, "ILE": 2, "LEU": 4, "LYS": -2, "MET": 2, "PHE": 0, "PRO": -3, "SER": -2, "THR": -1, "TRP": -2, "TYR": -1, "VAL": 1},
+      "LYS": {"ALA": -1, "ARG": 2, "ASN": 0, "ASP": -1, "CYS": -3, "GLN": 1, "GLU": 1, "GLY": -2, "HIS": -1, "ILE": -3, "LEU": -2, "LYS": 5, "MET": -1, "PHE": -3, "PRO": -1, "SER": 0, "THR": -1, "TRP": -3, "TYR": -2, "VAL": -2},
+      "MET": {"ALA": -1, "ARG": -1, "ASN": -2, "ASP": -3, "CYS": -1, "GLN": 0, "GLU": -2, "GLY": -3, "HIS": -2, "ILE": 1, "LEU": 2, "LYS": -1, "MET": 5, "PHE": 0, "PRO": -2, "SER": -1, "THR": -1, "TRP": -1, "TYR": -1, "VAL": 1},
+      "PHE": {"ALA": -2, "ARG": -3, "ASN": -3, "ASP": -3, "CYS": -2, "GLN": -3, "GLU": -3, "GLY": -3, "HIS": -1, "ILE": 0, "LEU": 0, "LYS": -3, "MET": 0, "PHE": 6, "PRO": -4, "SER": -2, "THR": -2, "TRP": 1, "TYR": 3, "VAL": -1},
+      "PRO": {"ALA": -1, "ARG": -2, "ASN": -2, "ASP": -1, "CYS": -3, "GLN": -1, "GLU": -1, "GLY": -2, "HIS": -2, "ILE": -3, "LEU": -3, "LYS": -1, "MET": -2, "PHE": -4, "PRO": 7, "SER": -1, "THR": -1, "TRP": -4, "TYR": -3, "VAL": -2},
+      "SER": {"ALA": 1, "ARG": -1, "ASN": 1, "ASP": 0, "CYS": -1, "GLN": 0, "GLU": 0, "GLY": 0, "HIS": -1, "ILE": -2, "LEU": -2, "LYS": 0, "MET": -1, "PHE": -2, "PRO": -1, "SER": 4, "THR": 1, "TRP": -3, "TYR": -2, "VAL": -2},
+      "THR": {"ALA": 0, "ARG": -1, "ASN": 0, "ASP": -1, "CYS": -1, "GLN": -1, "GLU": -1, "GLY": -2, "HIS": -2, "ILE": -1, "LEU": -1, "LYS": -1, "MET": -1, "PHE": -2, "PRO": -1, "SER": 1, "THR": 5, "TRP": -2, "TYR": -2, "VAL": 0},
+      "TRP": {"ALA": -3, "ARG": -3, "ASN": -4, "ASP": -4, "CYS": -2, "GLN": -2, "GLU": -3, "GLY": -2, "HIS": -2, "ILE": -3, "LEU": -2, "LYS": -3, "MET": -1, "PHE": 1, "PRO": -4, "SER": -3, "THR": -2, "TRP": 11, "TYR": 2, "VAL": -3},
+      "TYR": {"ALA": -2, "ARG": -2, "ASN": -2, "ASP": -3, "CYS": -2, "GLN": -1, "GLU": -2, "GLY": -3, "HIS": 2, "ILE": -1, "LEU": -1, "LYS": -2, "MET": -1, "PHE": 3, "PRO": -3, "SER": -2, "THR": -2, "TRP": 2, "TYR": 7, "VAL": -1},
+      "VAL": {"ALA": 0, "ARG": -3, "ASN": -3, "ASP": -3, "CYS": -1, "GLN": -2, "GLU": -2, "GLY": -3, "HIS": -3, "ILE": 3, "LEU": 1, "LYS": -2, "MET": 1, "PHE": -1, "PRO": -2, "SER": -2, "THR": 0, "TRP": -3, "TYR": -1, "VAL": 4}
+    }
+  }
+}

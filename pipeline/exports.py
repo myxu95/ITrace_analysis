@@ -1,0 +1,174 @@
+"""Per-complex downloadable artifacts (bravo §8.1.7).
+
+Pure functions that turn a complex's meta.json + analysis.json into a flat
+feature-table CSV and a standalone HTML report. The backend calls these for
+``/api/trajectories/{id}/feature_table.csv`` and ``/report.html``; the contact
+matrix is served as a static CSV curated by extract_analysis.
+"""
+from __future__ import annotations
+
+import csv
+import io
+import json
+from html import escape
+
+
+def _rows(meta: dict, analysis: dict) -> list[tuple[str, str, object]]:
+    """(category, feature, value) triples, skipping missing values."""
+    r = meta.get("rcsb") or {}
+    tcr = (meta.get("tcr") or {}).get("chains") or {}
+    a = analysis or {}
+    tc = a.get("tcr_cdr") or {}
+    geo = a.get("geometry") or {}
+    ang = a.get("angle") or {}
+    bsa = a.get("bsa") or {}
+    rmsf = a.get("rmsf") or {}
+    ent = (a.get("interface") or {}).get("contact_entropy") or {}
+    q = meta.get("quality") or {}
+    out: list[tuple[str, str, object]] = []
+
+    def add(cat, feat, val):
+        if val is not None and val != "":
+            out.append((cat, feat, val))
+
+    add("identity", "trajectory_id", meta.get("traj_id"))
+    add("identity", "pdb_id", meta.get("pdb_id"))
+    add("identity", "title", r.get("title"))
+    add("identity", "resolution_angstrom", r.get("resolution"))
+    add("identity", "hla_allele", r.get("hla_allele"))
+    add("identity", "host_species", meta.get("host_species") or (r.get("organisms") or [None])[0])
+    add("peptide", "sequence", meta.get("peptide_seq"))
+    add("peptide", "length", meta.get("peptide_length"))
+    add("peptide", "bulge_height_angstrom", geo.get("bulge_height_angstrom"))
+    for pos in ("alpha", "beta"):
+        c = tcr.get(pos) or {}
+        add("tcr", f"{pos}_v_gene", c.get("v_gene"))
+        add("tcr", f"{pos}_j_gene", c.get("j_gene"))
+        add("tcr", f"cdr3_{pos}", c.get("cdr3"))
+    add("recognition", "peptide_recognition_ratio", tc.get("peptide_recognition_ratio"))
+    add("recognition", "hla_restriction_ratio", tc.get("hla_restriction_ratio"))
+    add("recognition", "alpha_contribution", tc.get("alpha_contribution"))
+    add("recognition", "contact_entropy_normalized", ent.get("entropy_normalized"))
+    add("geometry", "crossing_angle_deg", (ang.get("crossing_deg") or {}).get("mean"))
+    add("geometry", "incident_angle_deg", (ang.get("incident_deg") or {}).get("mean"))
+    add("geometry", "radius_of_gyration_nm", geo.get("rg_mean_nm"))
+    add("geometry", "total_sasa_nm2", geo.get("total_sasa_mean_nm2"))
+    add("interface", "buried_surface_area_angstrom2", (bsa.get("buried_surface_area") or {}).get("mean"))
+    add("dynamics", "mean_rmsf_angstrom", rmsf.get("mean_rmsf_angstrom"))
+    add("provenance", "simulation_length_ns", meta.get("duration_ns"))
+    return out
+
+
+def feature_table_csv(meta: dict, analysis: dict) -> str:
+    buf = io.StringIO()
+    w = csv.writer(buf)
+    w.writerow(["category", "feature", "value"])
+    for cat, feat, val in _rows(meta, analysis):
+        w.writerow([cat, feat, val])
+    return buf.getvalue()
+
+
+def report_html(meta: dict, analysis: dict) -> str:
+    rows = _rows(meta, analysis)
+    pdb = escape(str(meta.get("pdb_id") or meta.get("traj_id") or ""))
+    title = escape(str((meta.get("rcsb") or {}).get("title") or pdb))
+    body = []
+    cat = None
+    for c, feat, val in rows:
+        if c != cat:
+            body.append(f'<tr><th colspan="2" class="cat">{escape(c)}</th></tr>')
+            cat = c
+        body.append(f"<tr><td>{escape(feat)}</td><td>{escape(str(val))}</td></tr>")
+    hotspots = (analysis.get("interface") or {}).get("hotspots") or []
+    hs = "".join(
+        f"<tr><td>{escape(h.get('category',''))}</td><td>{escape(str(h.get('chain','')))}{h.get('resid','')} "
+        f"{escape(str(h.get('resname','')))}</td><td>{h.get('score','')}</td></tr>"
+        for h in hotspots[:10])
+    return f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
+<title>{pdb} — pHLA-TCR dynamic profile</title>
+<style>
+ body{{font:14px/1.5 system-ui,sans-serif;color:#0f172a;max-width:760px;margin:32px auto;padding:0 18px;}}
+ h1{{font-size:20px;margin:0 0 2px;}} .sub{{color:#64748b;margin:0 0 18px;}}
+ table{{border-collapse:collapse;width:100%;margin-bottom:20px;}}
+ td,th{{padding:5px 8px;border-bottom:1px solid #eef2f6;text-align:left;font-size:13px;}}
+ th.cat{{background:#f1f5f9;text-transform:uppercase;font-size:11px;letter-spacing:.05em;color:#64748b;}}
+ td:nth-child(2){{font-variant-numeric:tabular-nums;}}
+ footer{{color:#94a3b8;font-size:11px;margin-top:24px;}}
+</style></head><body>
+<h1>{title}</h1>
+<p class="sub">PDB {pdb} · pHLA-TCR interface descriptors · single 200 ns replica</p>
+<table><tbody>{''.join(body)}</tbody></table>
+{('<h2 style="font-size:15px;">Top interface hotspots</h2><table><thead><tr><th>Role</th><th>Residue</th><th>Score</th></tr></thead><tbody>' + hs + '</tbody></table>') if hs else ''}
+<footer>Generated by ImmunoTrace. Hotspot/recognition metrics are heuristic; see Methods.</footer>
+</body></html>"""
+
+
+# ---- dataset-level exports (download module) ------------------------------
+
+def manifest_csv(manifest: dict) -> str:
+    """Flat CSV of the whole library — one row per trajectory, every manifest field
+    (list fields joined with ';'). Served at /api/download/manifest.csv."""
+    rows = manifest.get("trajectories") or []
+    lead = ["traj_id", "pdb_id", "peptide_seq", "peptide_length", "antigen_name",
+            "antigen_organism", "antigen_category", "hla_allele", "host_species",
+            "is_human", "tcr_type", "trav", "trbv", "peptide_recognition_ratio",
+            "hla_restriction_ratio", "alpha_contribution", "cdr_decomposition_reliable",
+            "duration_ns", "n_frames_full", "n_frames_web", "n_frames_view",
+            "resolution", "release_year"]
+    keys = list(dict.fromkeys(lead + [k for r in rows for k in r]))
+    buf = io.StringIO()
+    w = csv.DictWriter(buf, fieldnames=keys, extrasaction="ignore")
+    w.writeheader()
+    for r in rows:
+        w.writerow({k: (";".join(map(str, v)) if isinstance(v, list) else v)
+                    for k, v in r.items()})
+    return buf.getvalue()
+
+
+# Wide per-trajectory feature columns: (name, extractor(meta, analysis)).
+_FEATURE_FIELDS = [
+    ("hla_resolved",         lambda m, a: m.get("hla_resolved")),
+    ("antigen_category",     lambda m, a: (m.get("antigen") or {}).get("category")),
+    ("host_species",         lambda m, a: m.get("host_species")),
+    ("duration_ns",          lambda m, a: m.get("duration_ns")),
+    ("crossing_deg",         lambda m, a: ((a.get("angle") or {}).get("crossing_deg") or {}).get("mean")),
+    ("incident_deg",         lambda m, a: ((a.get("angle") or {}).get("incident_deg") or {}).get("mean")),
+    ("reversed_polarity",    lambda m, a: (a.get("angle") or {}).get("reversed_polarity")),
+    ("cdr3_pep_recognition", lambda m, a: (a.get("tcr_cdr") or {}).get("peptide_recognition_ratio")),
+    ("cdr12_hla_restriction",lambda m, a: (a.get("tcr_cdr") or {}).get("hla_restriction_ratio")),
+    ("alpha_contribution",   lambda m, a: (a.get("tcr_cdr") or {}).get("alpha_contribution")),
+    ("mean_rmsf_ang",        lambda m, a: (a.get("rmsf") or {}).get("mean_rmsf_angstrom")),
+    ("bulge_height_ang",     lambda m, a: (a.get("geometry") or {}).get("bulge_height_angstrom")),
+    ("contact_entropy",      lambda m, a: ((a.get("interface") or {}).get("contact_entropy") or {}).get("entropy_normalized")),
+    ("cdr_decomposition_reliable",
+                             lambda m, a: (m.get("interface_descriptors") or {}).get("cdr_decomposition_reliable")),
+    # TOP6 additions
+    ("fnat_mean",            lambda m, a: (a.get("fnat") or {}).get("fnat_mean")),
+    ("bsa_total_ang2",       lambda m, a: (a.get("bsa_decomposition") or {}).get("total")),
+    ("pc1_cosine_content",   lambda m, a: (a.get("essential_dynamics") or {}).get("pc1_cosine_content")),
+    ("subspace_rmsip",       lambda m, a: (a.get("essential_dynamics") or {}).get("subspace_rmsip")),
+    ("peptide_dpca_nstates", lambda m, a: (a.get("peptide_dpca") or {}).get("n_substates")),
+]
+
+
+def dataset_features_csv(web_data) -> str:
+    """Wide per-trajectory table of the key MD / interface features across the whole
+    library (one row per trajectory; reads each meta.json + analysis.json). For
+    cross-complex analysis. Served at /api/download/features.csv."""
+    from pathlib import Path
+    web_data = Path(web_data)
+    cols = ["traj_id", "pdb_id", "peptide_seq", "peptide_length"] + [n for n, _ in _FEATURE_FIELDS]
+    buf = io.StringIO()
+    w = csv.writer(buf)
+    w.writerow(cols)
+    for d in sorted(p for p in web_data.iterdir() if p.is_dir() and "_run" in p.name):
+        meta_p = d / "meta.json"
+        if not meta_p.exists():
+            continue
+        m = json.loads(meta_p.read_text())
+        ap = d / "analysis" / "analysis.json"
+        a = json.loads(ap.read_text()) if ap.exists() else {}
+        row = [d.name, m.get("pdb_id"), m.get("peptide_seq"), m.get("peptide_length")]
+        row += [fn(m, a) for _, fn in _FEATURE_FIELDS]
+        w.writerow(row)
+    return buf.getvalue()

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" width="1100" height="631" viewBox="0 0 1100 631"
+	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xml:lang="en">
+<title>Structural formula of glycine</title>
+<style type="text/css">
+	line, path, polyline, polygon{
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 11;
+	}
+	text{
+		fill: currentColor;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 170px;
+	}
+</style>
+
+<!-- Bonds -->
+<polyline points="364,205 525,112 759,247 759,439"/>
+<line x1="739" y1="236" x2="915" y2="133"/>
+<line x1="759" y1="271" x2="935" y2="169"/>
+
+<!-- Labels -->
+<text x="0"
+	><tspan x="35" y="309">H</tspan
+	><tspan dy="37" font-size="130">2</tspan
+	><tspan dy="-37">N</tspan
+></text>
+<text x="692" y="579">OH</text>
+<text x="926" y="173">O</text>
+</svg>

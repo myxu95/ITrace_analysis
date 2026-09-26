@@ -1,0 +1,307 @@
+{
+  "interaction_types": {
+    "hydrogen_bond": {
+      "name": "Hydrogen Bond",
+      "abbreviation": "H-bond",
+      "definition": "Electrostatic interaction between hydrogen donor (N-H, O-H) and acceptor (O, N)",
+      "typical_distance": "2.7-3.2 Å (donor-acceptor)",
+      "typical_angle": ">120° (donor-H-acceptor)",
+      "strength": "2-5 kcal/mol (neutral), 4-8 kcal/mol (charged)",
+      "common_residue_pairs": [
+        {"donor": "Ser", "acceptor": "Asp/Glu", "strength": "moderate"},
+        {"donor": "Thr", "acceptor": "Asp/Glu", "strength": "moderate"},
+        {"donor": "Tyr", "acceptor": "Asp/Glu", "strength": "moderate"},
+        {"donor": "Arg", "acceptor": "Asp/Glu", "strength": "strong"},
+        {"donor": "Lys", "acceptor": "Asp/Glu", "strength": "strong"},
+        {"donor": "Asn", "acceptor": "Asp/Glu", "strength": "moderate"},
+        {"donor": "Gln", "acceptor": "Asp/Glu", "strength": "moderate"}
+      ],
+      "design_strategies": {
+        "optimize_geometry": "Adjust donor-acceptor distance (2.7-3.2 Å) and angle (>120°)",
+        "strengthen": "Use charged H-bonds (R-E, K-D) instead of neutral (S-O, T-O)",
+        "add_donor_acceptor": "S→T, A→S, F→Y",
+        "remove": "T→A, Y→F (if H-bond not critical)",
+        "optimize_length": "R→K, E→D (adjust sidechain length)"
+      },
+      "cautions": [
+        "Buried unsatisfied H-bond donors/acceptors are destabilizing",
+        "Water-mediated H-bonds may be disrupted by mutations",
+        "H-bond networks show cooperativity - consider multiple bonds"
+      ],
+      "interpretation": {
+        "occupancy_high": ">80% - stable, functionally important",
+        "occupancy_moderate": "50-80% - dynamic, may be important",
+        "occupancy_low": "<50% - transient, may not be functional"
+      }
+    },
+    "salt_bridge": {
+      "name": "Salt Bridge",
+      "abbreviation": "SB",
+      "definition": "Electrostatic interaction between oppositely charged residues",
+      "typical_distance": "3.5-4.5 Å (charged atom distance)",
+      "typical_angle": "Variable",
+      "strength": "3-8 kcal/mol (solvent-exposed), 5-12 kcal/mol (buried)",
+      "common_residue_pairs": [
+        {"positive": "Arg", "negative": "Asp", "strength": "strong", "geometry": "bidentate"},
+        {"positive": "Arg", "negative": "Glu", "strength": "strong", "geometry": "bidentate"},
+        {"positive": "Lys", "negative": "Asp", "strength": "moderate", "geometry": "monodentate"},
+        {"positive": "Lys", "negative": "Glu", "strength": "moderate", "geometry": "monodentate"}
+      ],
+      "design_strategies": {
+        "optimize_distance": "Target 3.5-4.5 Å (charged atom distance)",
+        "optimize_geometry": "Bidentate (R-E) stronger than monodentate (K-E)",
+        "optimize_length": "R↔K, E↔D",
+        "introduce_new": "A→K/R (if near acidic residue), A→E/D (if near basic)",
+        "strengthen_existing": "K→R (bidentate), D→E (longer reach)"
+      },
+      "cautions": [
+        "Charge reversal (R→E) usually detrimental",
+        "Salt bridges at interface periphery may be transient",
+        "Buried salt bridges stronger but rarer",
+        "pH-dependent - consider protonation states"
+      ],
+      "interpretation": {
+        "occupancy_high": ">70% - stable, strong contributor",
+        "occupancy_moderate": "40-70% - dynamic, moderate contributor",
+        "occupancy_low": "<40% - transient, weak contributor"
+      }
+    },
+    "hydrophobic_contact": {
+      "name": "Hydrophobic Contact",
+      "abbreviation": "HC",
+      "definition": "Van der Waals interaction between nonpolar residues",
+      "typical_distance": "3.5-5.0 Å (sidechain heavy atoms)",
+      "typical_angle": "N/A",
+      "strength": "0.5-2 kcal/mol per contact",
+      "common_residue_pairs": [
+        {"residue1": "Leu", "residue2": "Leu/Ile/Val/Phe", "strength": "moderate"},
+        {"residue1": "Ile", "residue2": "Leu/Ile/Val/Phe", "strength": "moderate"},
+        {"residue1": "Val", "residue2": "Leu/Ile/Val/Phe", "strength": "moderate"},
+        {"residue1": "Met", "residue2": "Leu/Ile/Val/Phe", "strength": "moderate"},
+        {"residue1": "Phe", "residue2": "Leu/Ile/Val/Phe", "strength": "strong"}
+      ],
+      "design_strategies": {
+        "maximize_packing": "Maximize van der Waals contacts, minimize voids",
+        "size_complementarity": "Match sidechain volumes",
+        "increase_hydrophobicity": "S→L, A→V, T→I",
+        "optimize_size": "L→I (larger), L→V (smaller)",
+        "introduce_aromatic": "A→F, S→Y (if space allows)"
+      },
+      "cautions": [
+        "Over-packing may cause steric clashes",
+        "Hydrophobic residues on surface may reduce solubility",
+        "Cumulative effect - many weak contacts sum to strong binding"
+      ],
+      "interpretation": {
+        "occupancy_high": ">80% - stable hydrophobic core",
+        "occupancy_moderate": "60-80% - dynamic packing",
+        "occupancy_low": "<60% - transient or weak contact"
+      }
+    },
+    "pi_stacking": {
+      "name": "π-π Stacking",
+      "abbreviation": "π-π",
+      "definition": "Interaction between aromatic ring systems",
+      "typical_distance": "3.5-4.5 Å (ring centroid distance)",
+      "typical_angle": "Parallel-displaced (0-30°) or T-shaped (60-90°)",
+      "strength": "2-6 kcal/mol",
+      "common_residue_pairs": [
+        {"residue1": "Phe", "residue2": "Phe", "strength": "moderate", "geometry": "parallel or T-shaped"},
+        {"residue1": "Phe", "residue2": "Tyr", "strength": "moderate", "geometry": "parallel or T-shaped"},
+        {"residue1": "Phe", "residue2": "Trp", "strength": "strong", "geometry": "parallel or T-shaped"},
+        {"residue1": "Tyr", "residue2": "Tyr", "strength": "moderate", "geometry": "parallel or T-shaped"},
+        {"residue1": "Tyr", "residue2": "Trp", "strength": "strong", "geometry": "parallel or T-shaped"},
+        {"residue1": "Trp", "residue2": "Trp", "strength": "strong", "geometry": "parallel or T-shaped"}
+      ],
+      "design_strategies": {
+        "optimize_geometry": "Parallel-displaced (strongest) or T-shaped",
+        "optimize_distance": "3.5-4.5 Å between ring centroids",
+        "optimize_stacking": "Y↔F↔W",
+        "introduce_stacking": "A→F, S→Y (if near aromatic peptide residue)",
+        "remove_stacking": "F→A (if stacking not beneficial)"
+      },
+      "cautions": [
+        "W is bulky, may cause clashes",
+        "Y can H-bond, F cannot - consider both effects",
+        "Geometry-sensitive - misalignment reduces strength",
+        "Often critical for peptide recognition in CDR3"
+      ],
+      "interpretation": {
+        "occupancy_high": ">75% - stable, critical for binding",
+        "occupancy_moderate": "50-75% - dynamic, important",
+        "occupancy_low": "<50% - transient, may not be functional"
+      }
+    },
+    "cation_pi": {
+      "name": "Cation-π Interaction",
+      "abbreviation": "Cat-π",
+      "definition": "Interaction between cationic residue and aromatic ring",
+      "typical_distance": "3.5-4.5 Å (cation to ring centroid)",
+      "typical_angle": "Cation above ring plane (perpendicular preferred)",
+      "strength": "2-5 kcal/mol",
+      "common_residue_pairs": [
+        {"cation": "Arg", "aromatic": "Phe", "strength": "strong"},
+        {"cation": "Arg", "aromatic": "Tyr", "strength": "strong"},
+        {"cation": "Arg", "aromatic": "Trp", "strength": "strong"},
+        {"cation": "Lys", "aromatic": "Phe", "strength": "moderate"},
+        {"cation": "Lys", "aromatic": "Tyr", "strength": "moderate"},
+        {"cation": "Lys", "aromatic": "Trp", "strength": "moderate"}
+      ],
+      "design_strategies": {
+        "optimize_geometry": "Cation above aromatic ring centroid",
+        "optimize_distance": "3.5-4.5 Å",
+        "introduce_cation": "A→K/R (if near aromatic)",
+        "introduce_aromatic": "A→F/Y (if near R/K)",
+        "optimize": "K→R (stronger), F→Y (H-bonding capability)"
+      },
+      "cautions": [
+        "Cation-π weaker than salt bridges",
+        "Geometry-sensitive, may not form if misaligned",
+        "R stronger than K due to delocalized charge",
+        "Often found at interface periphery"
+      ],
+      "interpretation": {
+        "occupancy_high": ">70% - stable, functional",
+        "occupancy_moderate": "50-70% - dynamic, moderate contributor",
+        "occupancy_low": "<50% - transient, weak contributor"
+      }
+    },
+    "contact": {
+      "name": "Residue-Residue Contact",
+      "abbreviation": "Contact",
+      "definition": "Minimum heavy atom distance between residue pairs",
+      "typical_distance": "<4.5 Å (heavy atom distance)",
+      "typical_angle": "N/A",
+      "strength": "Variable (sum of all interaction types)",
+      "common_residue_pairs": "All residue pairs",
+      "design_strategies": {
+        "identify_interface": "Residues with distance <4.5 Å",
+        "prioritize_hotspots": "High RRCS (>3.0) contacts",
+        "analyze_interaction_type": "Determine H-bond, hydrophobic, π-π, etc.",
+        "optimize_specific_interaction": "Use type-specific strategies"
+      },
+      "cautions": [
+        "Contact does not specify interaction type",
+        "Use typed interactions (H-bond, π-π, etc.) for design",
+        "RRCS provides weighted contact strength"
+      ],
+      "interpretation": {
+        "rrcs_high": ">3.0 - hotspot, critical for binding",
+        "rrcs_moderate": "1.5-3.0 - moderate contributor",
+        "rrcs_low": "<1.5 - weak or transient contact"
+      }
+    }
+  },
+  "interaction_analysis_guide": {
+    "identify_hotspots": {
+      "description": "Identify residues contributing most to binding energy",
+      "metrics": [
+        {"metric": "RRCS", "threshold": ">3.0", "interpretation": "Strong hotspot"},
+        {"metric": "Occupancy", "threshold": ">70%", "interpretation": "Stable interaction"},
+        {"metric": "BSA contribution", "threshold": ">50 Å²", "interpretation": "Significant burial"}
+      ],
+      "workflow": [
+        "Calculate RRCS for all residue pairs",
+        "Filter by RRCS > 3.0",
+        "Check occupancy > 70%",
+        "Identify interaction type (H-bond, π-π, etc.)",
+        "Prioritize for mutation design"
+      ]
+    },
+    "analyze_interaction_network": {
+      "description": "Understand cooperative effects and interaction clusters",
+      "metrics": [
+        {"metric": "H-bond network", "interpretation": "Multiple H-bonds show cooperativity"},
+        {"metric": "Hydrophobic cluster", "interpretation": "Core packing contributes cumulatively"},
+        {"metric": "Salt bridge network", "interpretation": "Charged networks stabilize interface"}
+      ],
+      "workflow": [
+        "Identify all interactions for each residue",
+        "Group interactions by type and location",
+        "Assess cooperativity (network effects)",
+        "Consider multi-residue optimization if needed"
+      ]
+    },
+    "assess_stability": {
+      "description": "Evaluate interaction stability over trajectory",
+      "metrics": [
+        {"metric": "Occupancy", "threshold": ">70%", "interpretation": "Stable"},
+        {"metric": "Occupancy", "threshold": "50-70%", "interpretation": "Dynamic"},
+        {"metric": "Occupancy", "threshold": "<50%", "interpretation": "Transient"},
+        {"metric": "RMSF", "threshold": "<2 Å", "interpretation": "Rigid, constrained"},
+        {"metric": "RMSF", "threshold": ">2 Å", "interpretation": "Flexible, induced fit"}
+      ],
+      "workflow": [
+        "Calculate occupancy for each interaction",
+        "Calculate RMSF for interacting residues",
+        "Identify stable vs transient interactions",
+        "Prioritize stable interactions for optimization"
+      ]
+    },
+    "predict_mutation_impact": {
+      "description": "Estimate effect of mutation on interaction",
+      "considerations": [
+        "Interaction type (H-bond, hydrophobic, π-π, salt bridge)",
+        "Current residue properties (size, charge, hydrophobicity, aromaticity)",
+        "Proposed residue properties",
+        "Geometric constraints (distance, angle, space)",
+        "Occupancy and stability",
+        "Region (CDR3 vs framework)"
+      ],
+      "workflow": [
+        "Identify interaction type",
+        "Determine current interaction strength (RRCS, occupancy)",
+        "Propose mutation maintaining or enhancing interaction",
+        "Check geometric feasibility (space, distance)",
+        "Estimate ΔΔG (computational prediction)",
+        "Assess risk (region, conservation, stability)"
+      ]
+    }
+  },
+  "metric_interpretation": {
+    "RRCS": {
+      "name": "Residue-Residue Contact Strength",
+      "definition": "Weighted contact frequency × distance-based score",
+      "range": "0-10+ (typical 0-5)",
+      "interpretation": {
+        "strong_hotspot": ">3.0 - Critical for binding, prime mutation target",
+        "moderate_contributor": "1.5-3.0 - Moderate contribution, secondary target",
+        "weak_contact": "<1.5 - Weak or transient, low priority"
+      },
+      "use_in_design": "Identify hotspot residues for mutation, predict affinity impact"
+    },
+    "occupancy": {
+      "name": "Interaction Occupancy",
+      "definition": "Fraction of trajectory with interaction present",
+      "range": "0-1 (0-100%)",
+      "interpretation": {
+        "persistent": ">0.8 - Stable, functionally important",
+        "frequent": "0.5-0.8 - Dynamic but significant",
+        "transient": "<0.5 - May not be functionally important"
+      },
+      "use_in_design": "Distinguish stable from transient contacts, prioritize stable interactions"
+    },
+    "BSA": {
+      "name": "Buried Surface Area",
+      "definition": "Surface area buried upon complex formation",
+      "range": "0-2000+ Å² (typical TCR-pMHC: 800-1200 Å²)",
+      "interpretation": {
+        "strong_interface": ">1000 Å² - Strong binding",
+        "typical_interface": "800-1000 Å² - Typical TCR-pMHC",
+        "weak_interface": "<800 Å² - Weak or partial interface"
+      },
+      "use_in_design": "Assess overall binding strength, guide interface optimization"
+    },
+    "RMSF": {
+      "name": "Root Mean Square Fluctuation",
+      "definition": "Atomic positional fluctuation over trajectory",
+      "range": "0-10+ Å (typical 0.5-5 Å)",
+      "interpretation": {
+        "high_flexibility": ">3 Å - High flexibility, induced fit region",
+        "moderate_flexibility": "1-3 Å - Moderate flexibility, typical for CDR loops",
+        "rigid": "<1 Å - Rigid, structurally constrained"
+      },
+      "use_in_design": "Identify flexible regions tolerant to mutation, assess induced fit"
+    }
+  }
+}

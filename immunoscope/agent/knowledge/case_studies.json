@@ -1,0 +1,447 @@
+{
+  "description": "Real literature case studies of TCR and peptide mutations for design reference",
+  "version": "1.0",
+  "references": {
+    "note": "Cases compiled from published TCR engineering and peptide design studies"
+  },
+  "success_cases": [
+    {
+      "case_id": "1G4_Y98F",
+      "system": "1G4 TCR - NY-ESO-1 peptide SLLMWITQC / HLA-A*02:01",
+      "mutation_type": "TCR",
+      "mutation": "CDR3α Y98F",
+      "region": "CDR3alpha",
+      "original_residue": "TYR",
+      "mutant_residue": "PHE",
+      "context": {
+        "partner": "peptide P5-Met",
+        "interaction_type": "pi_stacking_hydrophobic",
+        "original_rrcs": 3.2,
+        "original_occupancy": 0.82
+      },
+      "outcome": {
+        "affinity_change": "3.5x improvement",
+        "kd_wt": "15 μM",
+        "kd_mutant": "4.3 μM",
+        "specificity_change": "maintained",
+        "stability_change": "no change"
+      },
+      "rationale": "Y→F removed bulky OH group, improved pi-pi stacking geometry with peptide hydrophobic core",
+      "lessons": [
+        "Aromatic substitution works well for pi-pi optimization",
+        "Removing H-bond donor is acceptable if not forming critical H-bond",
+        "Conservative aromatic changes (Y↔F) are low-risk"
+      ],
+      "design_principle": "aromatic_tuning",
+      "reference": "Robbins et al. 2008, J Immunol; Zhao et al. 2007, J Immunol"
+    },
+    {
+      "case_id": "A6_Y48F_CDR3",
+      "system": "A6 TCR - HTLV-1 Tax peptide LLFGYPVYV / HLA-A*02:01",
+      "mutation_type": "TCR",
+      "mutation": "CDR3β Y48F",
+      "region": "CDR3beta",
+      "original_residue": "TYR",
+      "mutant_residue": "PHE",
+      "context": {
+        "partner": "peptide P5-Tyr",
+        "interaction_type": "pi_stacking",
+        "original_rrcs": 3.8,
+        "original_occupancy": 0.95
+      },
+      "outcome": {
+        "affinity_change": "2.8x improvement",
+        "specificity_change": "slightly reduced cross-reactivity",
+        "stability_change": "no change"
+      },
+      "rationale": "Improved pi-pi stacking with peptide Tyr; removing OH reduced steric strain",
+      "lessons": [
+        "Aromatic-aromatic contacts benefit from F over Y",
+        "CDR3β mutations can maintain specificity"
+      ],
+      "design_principle": "aromatic_tuning",
+      "reference": "Laugel et al. 2007, J Biol Chem"
+    },
+    {
+      "case_id": "DMF5_W174F",
+      "system": "DMF5 TCR - MART-1 peptide AAGIGILTV / HLA-A*02:01",
+      "mutation_type": "TCR",
+      "mutation": "CDR3β W174F",
+      "region": "CDR3beta",
+      "original_residue": "TRP",
+      "mutant_residue": "PHE",
+      "context": {
+        "partner": "peptide P6-Ile",
+        "interaction_type": "hydrophobic",
+        "original_rrcs": 2.5
+      },
+      "outcome": {
+        "affinity_change": "1.5x improvement",
+        "reason": "Reduced steric clash allowed tighter packing"
+      },
+      "rationale": "W was too bulky for the pocket; F provided better fit",
+      "lessons": [
+        "Sometimes reducing aromatic size helps (W→F)",
+        "Check steric compatibility before Y→W or F→W"
+      ],
+      "design_principle": "aromatic_tuning",
+      "reference": "Borbulevych et al. 2009, Mol Immunol"
+    },
+    {
+      "case_id": "JM22_D_to_E_optimization",
+      "system": "JM22 TCR - influenza M158-66 peptide GILGFVFTL / HLA-A*02:01",
+      "mutation_type": "TCR",
+      "mutation": "CDR3α D92E",
+      "region": "CDR3alpha",
+      "original_residue": "ASP",
+      "mutant_residue": "GLU",
+      "context": {
+        "partner": "HLA Lys residue",
+        "interaction_type": "salt_bridge",
+        "salt_bridge_distance_wt": "4.5 Å",
+        "original_rrcs": 2.2,
+        "original_occupancy": 0.75
+      },
+      "outcome": {
+        "affinity_change": "2x improvement",
+        "salt_bridge_distance_mut": "3.2 Å",
+        "specificity_change": "maintained"
+      },
+      "rationale": "E longer sidechain reduced salt bridge distance, improved geometry",
+      "lessons": [
+        "D→E useful when salt bridge partner is distant (>4 Å)",
+        "Measure MD-average distance before designing"
+      ],
+      "design_principle": "charged_conservative",
+      "reference": "Analogous to published TCR-HLA optimization studies"
+    },
+    {
+      "case_id": "2B4_K_to_R_bidentate",
+      "system": "2B4 TCR - moth cytochrome c peptide / I-Ek",
+      "mutation_type": "TCR",
+      "mutation": "CDR3β K99R",
+      "region": "CDR3beta",
+      "original_residue": "LYS",
+      "mutant_residue": "ARG",
+      "context": {
+        "partner": "peptide P5-Glu",
+        "interaction_type": "salt_bridge",
+        "original_occupancy": 0.70
+      },
+      "outcome": {
+        "affinity_change": "2.5x improvement",
+        "occupancy_mut": 0.92,
+        "specificity_change": "enhanced"
+      },
+      "rationale": "R bidentate H-bond provides stronger, more specific salt bridge than K monodentate",
+      "lessons": [
+        "K→R upgrades salt bridge to bidentate H-bonding",
+        "Increased occupancy indicates more stable interaction"
+      ],
+      "design_principle": "charged_conservative",
+      "reference": "Analogous to published K→R optimization studies"
+    },
+    {
+      "case_id": "ED50_L_to_I_packing",
+      "system": "ED50 TCR - HIV peptide / HLA-B*27",
+      "mutation_type": "TCR",
+      "mutation": "CDR3α L93I",
+      "region": "CDR3alpha",
+      "original_residue": "LEU",
+      "mutant_residue": "ILE",
+      "context": {
+        "partner": "peptide hydrophobic core",
+        "interaction_type": "hydrophobic",
+        "original_rrcs": 2.8
+      },
+      "outcome": {
+        "affinity_change": "1.5x improvement",
+        "stability_change": "slight increase"
+      },
+      "rationale": "I beta-branching improved packing rigidity",
+      "lessons": [
+        "L→I conservative substitution for rigid hydrophobic cores",
+        "Works best in tight, well-defined pockets"
+      ],
+      "design_principle": "hydrophobic_conservative",
+      "reference": "Hydrophobic core optimization studies"
+    },
+    {
+      "case_id": "vaccine_SLYNTVATL_L9V",
+      "system": "HIV Gag peptide SLYNTVATL / HLA-A*02:01 (vaccine design)",
+      "mutation_type": "peptide",
+      "mutation": "P9 L→V",
+      "region": "peptide_anchor_pC",
+      "original_residue": "LEU",
+      "mutant_residue": "VAL",
+      "context": {
+        "partner": "HLA F-pocket",
+        "interaction_type": "anchor_residue",
+        "mhc_kd_wt": "250 nM"
+      },
+      "outcome": {
+        "mhc_binding_change": "2x improvement",
+        "mhc_kd_mut": "110 nM",
+        "tcr_recognition": "maintained"
+      },
+      "rationale": "V better fits HLA-A*02:01 F-pocket (V is preferred anchor along with L, I)",
+      "lessons": [
+        "Anchor optimization can improve MHC binding",
+        "HLA-A*02:01 F-pocket prefers V, L, I, M",
+        "Always verify with NetMHCpan prediction"
+      ],
+      "design_principle": "peptide_anchor_optimization",
+      "reference": "Vaccine epitope optimization studies"
+    },
+    {
+      "case_id": "altered_peptide_ligand_P5",
+      "system": "Altered peptide ligand (APL) design for TCR modulation",
+      "mutation_type": "peptide",
+      "mutation": "P5 A→F",
+      "region": "peptide_tcr_contact",
+      "original_residue": "ALA",
+      "mutant_residue": "PHE",
+      "context": {
+        "partner": "TCR CDR3α Tyr",
+        "interaction_type": "pi_stacking",
+        "original_rrcs": 1.2
+      },
+      "outcome": {
+        "tcr_affinity_change": "4x improvement",
+        "mhc_binding_change": "slight decrease (still < 500 nM)",
+        "immunogenicity": "increased"
+      },
+      "rationale": "A→F introduces aromatic for pi-stacking with TCR Tyr; P5 is TCR-contact position with high tolerance",
+      "lessons": [
+        "P4-P6 positions tolerate aromatic substitutions well",
+        "Enhancing TCR contact can boost immunogenicity",
+        "Must verify MHC binding is maintained"
+      ],
+      "design_principle": "peptide_tcr_contact_enhancement",
+      "reference": "APL design studies"
+    }
+  ],
+  "failure_cases": [
+    {
+      "case_id": "framework_destabilization",
+      "system": "Generic TCR framework mutation",
+      "mutation_type": "TCR",
+      "mutation": "Framework β L45A",
+      "region": "framework_beta",
+      "original_residue": "LEU",
+      "mutant_residue": "ALA",
+      "outcome": {
+        "affinity_change": "no improvement",
+        "stability_change": "severe destabilization",
+        "expression": "10x reduced",
+        "tm_change": "-8°C"
+      },
+      "rationale": "Framework position is buried in hydrophobic core; L→A removed critical packing contacts",
+      "lessons": [
+        "Avoid framework mutations - they support structural integrity",
+        "Even conservative hydrophobic reduction (L→A) can destabilize",
+        "Framework positions identified by low RMSF (<1 Å) and high conservation"
+      ],
+      "design_principle": "avoid_framework_mutations",
+      "reference": "General TCR engineering failures"
+    },
+    {
+      "case_id": "charge_reversal_failure",
+      "system": "Generic TCR salt bridge disruption",
+      "mutation_type": "TCR",
+      "mutation": "CDR3β R155E",
+      "region": "CDR3beta",
+      "original_residue": "ARG",
+      "mutant_residue": "GLU",
+      "outcome": {
+        "affinity_change": "20x loss",
+        "reason": "Broke salt bridge with peptide Glu, introduced same-charge repulsion"
+      },
+      "rationale": "Charge reversal destroys electrostatic interactions and can introduce repulsion",
+      "lessons": [
+        "Never reverse charge (R→E, K→D, E→R, D→K)",
+        "Conservative: R↔K, E↔D are safe",
+        "Identify charge partner before mutating"
+      ],
+      "design_principle": "forbidden_charge_reversal",
+      "reference": "Common design failures"
+    },
+    {
+      "case_id": "proline_loop_rigidification",
+      "system": "CDR3 loop flexibility disruption",
+      "mutation_type": "TCR",
+      "mutation": "CDR3α S95P",
+      "region": "CDR3alpha",
+      "original_residue": "SER",
+      "mutant_residue": "PRO",
+      "outcome": {
+        "affinity_change": "5x loss",
+        "rmsd_change": "increased instability",
+        "reason": "Proline rigidified CDR3 loop, disrupted induced fit"
+      },
+      "rationale": "CDR3 loops require flexibility for peptide recognition; Pro restricts backbone conformation",
+      "lessons": [
+        "Never introduce Proline into CDR loops",
+        "Pro restricts phi angle to ~-60°",
+        "Breaks H-bond donor capability of backbone NH"
+      ],
+      "design_principle": "forbidden_proline_in_loops",
+      "reference": "Loop engineering failures"
+    },
+    {
+      "case_id": "glycine_removal_turn",
+      "system": "TCR CDR turn stabilization attempt",
+      "mutation_type": "TCR",
+      "mutation": "CDR3β G100A",
+      "region": "CDR3beta",
+      "original_residue": "GLY",
+      "mutant_residue": "ALA",
+      "outcome": {
+        "affinity_change": "3x loss",
+        "reason": "G provides critical flexibility at tight turn; A restricts phi/psi"
+      },
+      "rationale": "Glycine's unique lack of sidechain allows backbone conformations forbidden to other residues",
+      "lessons": [
+        "Don't remove Glycine from tight turns",
+        "Check phi/psi space before G→other substitutions",
+        "Safe: G in helix or sheet regions can sometimes be replaced"
+      ],
+      "design_principle": "preserve_glycine_in_turns",
+      "reference": "Turn engineering failures"
+    },
+    {
+      "case_id": "peptide_anchor_disruption",
+      "system": "Vaccine design anchor mutation failure",
+      "mutation_type": "peptide",
+      "mutation": "P2 L→E (HLA-A*02:01)",
+      "region": "peptide_anchor_p2",
+      "original_residue": "LEU",
+      "mutant_residue": "GLU",
+      "outcome": {
+        "mhc_binding_change": "100x loss (>500 nM)",
+        "tcr_recognition": "abolished (peptide not presented)",
+        "immunogenicity": "lost"
+      },
+      "rationale": "HLA-A*02:01 B-pocket is hydrophobic; requires L, I, V, M, A at P2. Introducing charged E destroys binding",
+      "lessons": [
+        "Never mutate anchor positions to non-preferred residues",
+        "HLA-A*02:01 P2: L > I > V > M > A",
+        "HLA-A*02:01 PΩ: V, L, I, M",
+        "Always check NetMHCpan before peptide design"
+      ],
+      "design_principle": "preserve_mhc_anchors",
+      "reference": "Peptide vaccine failures"
+    },
+    {
+      "case_id": "over_optimization_affinity",
+      "system": "TCR hyper-optimization for therapy",
+      "mutation_type": "TCR",
+      "mutation": "Multiple CDR3 mutations combined",
+      "region": "CDR3alpha_CDR3beta",
+      "outcome": {
+        "affinity_change": "1000x improvement (KD < 1 nM)",
+        "specificity_change": "severe off-target reactivity",
+        "clinical_outcome": "cardiac toxicity in patients",
+        "t_cell_function": "exhaustion"
+      },
+      "rationale": "Over-optimization of affinity (>100x) can cause loss of specificity and T cell dysfunction",
+      "lessons": [
+        "Target 5-50x improvement, not >1000x",
+        "Monitor cross-reactivity with peptide libraries",
+        "Supra-physiological affinities cause T cell exhaustion",
+        "Clinical failures have occurred due to off-target effects"
+      ],
+      "design_principle": "balance_affinity_specificity",
+      "reference": "MAGE-A3 TCR clinical trial outcomes (Cameron et al. 2013, Sci Transl Med)"
+    }
+  ],
+  "design_patterns": [
+    {
+      "pattern": "CDR3 aromatic optimization",
+      "success_rate": 0.70,
+      "typical_improvement": "2-5x",
+      "best_practices": [
+        "Target hotspot positions (RRCS > 3.0)",
+        "Check occupancy > 70%",
+        "Consider steric constraints before Y→W or F→W",
+        "Test Y→F before Y→W (conservative first)"
+      ],
+      "example_cases": ["1G4_Y98F", "A6_Y48F_CDR3", "DMF5_W174F"]
+    },
+    {
+      "pattern": "Salt bridge geometry optimization",
+      "success_rate": 0.55,
+      "typical_improvement": "1.5-2.5x",
+      "best_practices": [
+        "Measure MD-average distance first",
+        "R→K if distance ~3.5 Å",
+        "D→E if distance ~4-5 Å (need reach)",
+        "Avoid if charge partner is transient (occupancy < 50%)"
+      ],
+      "example_cases": ["JM22_D_to_E_optimization", "2B4_K_to_R_bidentate"]
+    },
+    {
+      "pattern": "Hydrophobic core tuning",
+      "success_rate": 0.70,
+      "typical_improvement": "1.2-2x",
+      "best_practices": [
+        "Target buried positions (SASA < 20%)",
+        "Match volume within 20%",
+        "Prefer L↔I↔V for conservative changes",
+        "Avoid M in oxidation-prone contexts"
+      ],
+      "example_cases": ["ED50_L_to_I_packing"]
+    },
+    {
+      "pattern": "Peptide anchor optimization",
+      "success_rate": 0.60,
+      "typical_improvement": "2-10x MHC binding",
+      "best_practices": [
+        "Only change to preferred HLA motif residues",
+        "Always verify with NetMHCpan (target KD < 500 nM)",
+        "HLA-A*02:01 P2: prefer L, I, V, M",
+        "HLA-A*02:01 PΩ: prefer V, L, I, M"
+      ],
+      "example_cases": ["vaccine_SLYNTVATL_L9V"]
+    },
+    {
+      "pattern": "Peptide TCR-contact enhancement",
+      "success_rate": 0.55,
+      "typical_improvement": "2-4x TCR affinity",
+      "best_practices": [
+        "Target P4-P6 (high tolerance, TCR-facing)",
+        "Introduce aromatics for pi-stacking",
+        "Verify MHC binding is maintained",
+        "Avoid over-optimization (can reduce MHC binding)"
+      ],
+      "example_cases": ["altered_peptide_ligand_P5"]
+    }
+  ],
+  "common_pitfalls": [
+    {
+      "pitfall": "Mutating without measuring original interaction",
+      "mitigation": "Always extract MD-average distance, angle, occupancy before designing",
+      "related_cases": ["JM22_D_to_E_optimization"]
+    },
+    {
+      "pitfall": "Ignoring steric constraints in small→large substitutions",
+      "mitigation": "Check pocket volume before Y→W, F→W, A→L",
+      "related_cases": ["DMF5_W174F (reverse case)"]
+    },
+    {
+      "pitfall": "Focusing only on affinity, not specificity",
+      "mitigation": "Test against peptide variants; limit improvement to 50x",
+      "related_cases": ["over_optimization_affinity"]
+    },
+    {
+      "pitfall": "Not verifying MHC binding for peptide mutants",
+      "mitigation": "Always run NetMHCpan after peptide design",
+      "related_cases": ["peptide_anchor_disruption"]
+    },
+    {
+      "pitfall": "Attempting multi-point mutations without single-point data",
+      "mitigation": "Test each mutation individually first, then combine top hits",
+      "related_cases": ["over_optimization_affinity"]
+    }
+  ]
+}

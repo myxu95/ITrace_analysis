@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ImmunoScope Web</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">IM</div>
+        <div>
+          <strong>ImmunoScope</strong>
+          <span>MD Analysis Platform</span>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="#/" data-page="dashboard">Dashboard</a>
+        <a href="#/new" data-page="new">New Analysis</a>
+        <a href="#/compare" data-page="compare">Compare</a>
+        <a href="#/jobs" data-page="jobs">Jobs</a>
+      </nav>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <h1 id="page-title">Dashboard</h1>
+        <span class="pill">local web preview</span>
+      </header>
+      <section id="page-content" class="content"></section>
+    </main>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

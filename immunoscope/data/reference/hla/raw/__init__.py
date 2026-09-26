@@ -1,0 +1,3 @@
+"""
+Raw HLA data files.
+"""
